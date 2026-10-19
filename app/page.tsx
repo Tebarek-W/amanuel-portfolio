@@ -1,69 +1,215 @@
-import Image from "next/image";
+import Link from "next/link"
+import { CertificateCard } from "@/components/certificate-card"
+import { ContactSection } from "@/components/contact-section"
+import { ExpertiseCard } from "@/components/expertise-card"
+import { HeroSection } from "@/components/hero-section"
+import { ProjectCard } from "@/components/project-card"
+import { PublicationItem } from "@/components/publication-item"
+import { SectionHeading } from "@/components/section-heading"
+import { ServiceCard } from "@/components/service-card"
+import { WorkflowDiagram } from "@/components/workflow-diagram"
+import { Button } from "@/components/ui/button"
+import { certificates } from "@/data/certificates"
+import { education } from "@/data/education"
+import { getFeaturedProjects } from "@/data/projects"
+import { publications } from "@/data/publications"
+import { services } from "@/data/services"
+import { expertiseAreas } from "@/data/skills"
 
-export default function Home() {
+export default function HomePage() {
+  const featuredProjects = getFeaturedProjects().slice(0, 6)
+  const previewCertificates = certificates.slice(0, 4)
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <HeroSection />
+
+      <section
+        id="expertise"
+        className="section-y"
+        aria-labelledby="expertise-heading"
+      >
+        <div className="container-page">
+          <SectionHeading
+            id="expertise-heading"
+            eyebrow="Expertise"
+            title="Capabilities across the research data lifecycle"
+            description="From survey programming and field monitoring to cleaning, analysis, visualization, and geospatial work."
+          />
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {expertiseAreas.map((area, index) => (
+              <ExpertiseCard key={area.id} area={area} index={index} />
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+      </section>
+
+      <section
+        id="projects"
+        className="section-y border-y border-border bg-surface"
+        aria-labelledby="projects-heading"
+      >
+        <div className="container-page">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <SectionHeading
+              id="projects-heading"
+              eyebrow="Selected projects"
+              title="Data management contributions to research programs"
+              description="Documented roles focus on survey data management, quality assurance, and delivery of analysis-ready datasets — not sole leadership of entire research programs."
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <Button
+              variant="outline"
+              size="lg"
+              nativeButton={false}
+              render={<Link href="/projects" />}
+              className="shrink-0 self-start sm:self-auto"
+            >
+              View all projects
+            </Button>
+          </div>
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {featuredProjects.map((project, index) => (
+              <ProjectCard key={project.slug} project={project} index={index} />
+            ))}
+          </div>
         </div>
-      </main>
-    </div>
-  );
+      </section>
+
+      <section
+        id="services"
+        className="section-y"
+        aria-labelledby="services-heading"
+      >
+        <div className="container-page">
+          <SectionHeading
+            id="services-heading"
+            eyebrow="Services"
+            title="Practical support for research and M&E teams"
+            description="Service offerings are grounded in documented professional practice across digital collection, quality assurance, analysis, reporting, and GIS."
+          />
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {services.map((service, index) => (
+              <ServiceCard key={service.slug} service={service} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="impact"
+        className="section-y border-y border-border bg-surface"
+        aria-labelledby="impact-heading"
+      >
+        <div className="container-page">
+          <SectionHeading
+            id="impact-heading"
+            eyebrow="Research operations"
+            title="How reliable research data gets built"
+            description="A practical workflow spanning survey programming, field monitoring, validation, cleaning, documentation, and analysis-ready delivery."
+          />
+          <div className="mt-10">
+            <WorkflowDiagram />
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="credentials"
+        className="section-y"
+        aria-labelledby="credentials-heading"
+      >
+        <div className="container-page grid gap-12 lg:grid-cols-2">
+          <div>
+            <SectionHeading
+              id="credentials-heading"
+              eyebrow="Education"
+              title="Academic foundation"
+            />
+            <ul className="mt-8 space-y-4">
+              {education.map((item) => (
+                <li key={item.id} className="surface-panel p-5">
+                  <h3 className="font-heading text-lg font-semibold text-ink">
+                    {item.degree}
+                  </h3>
+                  <p className="mt-1 text-sm text-ink-muted">
+                    {item.institution} · {item.dateLabel}
+                  </p>
+                  {item.distinction ? (
+                    <p className="mt-2 text-sm text-teal">{item.distinction}</p>
+                  ) : null}
+                  {item.thesisOrEssay ? (
+                    <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                      {item.thesisOrEssay}
+                    </p>
+                  ) : null}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <SectionHeading
+              eyebrow="Certificates"
+              title="Professional training"
+              description="Selected certificates relevant to field research, reproducible workflows, survey methods, data science, and GIS."
+            />
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {previewCertificates.map((certificate) => (
+                <CertificateCard
+                  key={certificate.id}
+                  certificate={certificate}
+                />
+              ))}
+            </div>
+            <Button
+              variant="outline"
+              className="mt-6"
+              nativeButton={false}
+              render={<Link href="/certificates" />}
+            >
+              View all certificates
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="publications"
+        className="section-y border-y border-border bg-surface"
+        aria-labelledby="publications-heading"
+      >
+        <div className="container-page">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <SectionHeading
+              id="publications-heading"
+              eyebrow="Publications"
+              title="Research data outputs"
+              description="Documented publication and research data records with accurate authorship as supplied."
+            />
+            <Button
+              variant="outline"
+              size="lg"
+              nativeButton={false}
+              render={<Link href="/publications" />}
+              className="shrink-0 self-start sm:self-auto"
+            >
+              View publications
+            </Button>
+          </div>
+          <div className="mt-10 space-y-4">
+            {publications.map((publication) => (
+              <PublicationItem
+                key={publication.id}
+                publication={publication}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="border-b border-border bg-paper">
+        <ContactSection compact />
+      </div>
+    </>
+  )
 }
