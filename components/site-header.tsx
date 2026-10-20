@@ -12,10 +12,10 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/80 bg-paper/90 backdrop-blur-md">
-      <div className="container-page flex h-14 items-center justify-between gap-3 sm:h-16 sm:gap-4">
+      <div className="container-page grid h-14 grid-cols-[1fr_auto] items-center gap-3 sm:h-16 md:grid-cols-[1fr_auto_1fr] md:gap-4">
         <Link
           href="/"
-          className="group min-w-0 flex-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          className="group min-w-0 justify-self-start focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
         >
           <span className="block font-heading text-sm font-semibold tracking-tight text-ink sm:text-base">
             {siteConfig.name}
@@ -27,7 +27,7 @@ export function SiteHeader() {
 
         <nav
           aria-label="Primary"
-          className="hidden items-center gap-1 md:flex"
+          className="hidden items-center justify-center gap-1 justify-self-center md:flex"
         >
           {siteConfig.nav.map((item) => {
             const active =
@@ -52,7 +52,7 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="flex shrink-0 items-center justify-end gap-2 justify-self-end">
           <Button
             nativeButton={false}
             render={<Link href="/contact" />}

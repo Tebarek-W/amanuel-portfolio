@@ -47,23 +47,24 @@ export function ProjectsFilter({ projects }: ProjectsFilterProps) {
   }, [projects, query, category])
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       <div className="flex flex-col gap-4">
-        <div className="max-w-md">
+        <div className="w-full max-w-md">
           <label htmlFor="project-search" className="sr-only">
             Search projects
           </label>
           <Input
             id="project-search"
             type="search"
-            placeholder="Search by title, organization, or domain"
+            placeholder="Search projects"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
+            className="w-full"
           />
         </div>
 
         <div
-          className="flex flex-wrap gap-2"
+          className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0"
           role="group"
           aria-label="Filter by research domain"
         >
@@ -79,7 +80,9 @@ export function ProjectsFilter({ projects }: ProjectsFilterProps) {
               active={category === key}
               onClick={() => setCategory(key)}
               label={projectCategories[key].label}
-              count={projects.filter((project) => project.category === key).length}
+              count={
+                projects.filter((project) => project.category === key).length
+              }
             />
           ))}
         </div>
@@ -131,14 +134,16 @@ function FilterChip({
       onClick={onClick}
       aria-pressed={active}
       className={cn(
-        "inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
+        "inline-flex shrink-0 items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-xs whitespace-nowrap transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring sm:gap-2 sm:px-3 sm:py-2 sm:text-sm",
         active
           ? "border-teal bg-teal-muted text-ink"
           : "border-border bg-surface-elevated text-ink-muted hover:border-teal/40 hover:text-ink"
       )}
     >
       <span>{label}</span>
-      <span className="font-mono text-xs opacity-70">{count}</span>
+      <span className="font-mono text-[0.65rem] opacity-70 sm:text-xs">
+        {count}
+      </span>
     </button>
   )
 }
