@@ -6,7 +6,7 @@ import { publications } from "@/data/publications"
 export const metadata: Metadata = {
   title: "Publications",
   description:
-    "Publications and research data outputs associated with Amanuel Tadele Dabarsho, including the National Survey on Persons with Disabilities in Ethiopia research data record.",
+    "Publications and research data outputs associated with Amanuel Tadele, including the National Survey on Persons with Disabilities in Ethiopia research data record.",
 }
 
 export default function PublicationsPage() {

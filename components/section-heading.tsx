@@ -32,12 +32,12 @@ export function SectionHeading({
       ) : null}
       <h2
         id={id}
-        className="font-heading text-3xl font-semibold tracking-tight text-ink text-balance sm:text-4xl"
+        className="font-heading text-[1.65rem] font-semibold leading-snug tracking-tight text-ink text-balance sm:text-4xl sm:leading-tight"
       >
         {title}
       </h2>
       {description ? (
-        <p className="mt-4 text-base leading-relaxed text-ink-muted sm:text-lg">
+        <p className="mt-3 text-[0.95rem] leading-relaxed text-ink-muted sm:mt-4 sm:text-lg">
           {description}
         </p>
       ) : null}

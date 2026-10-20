@@ -7,7 +7,7 @@ import { projects } from "@/data/projects"
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Selected research projects and data management contributions where Amanuel Tadele Dabarsho supported survey operations, quality assurance, and analysis-ready datasets.",
+    "Selected research projects and data management contributions where Amanuel Tadele supported survey operations, quality assurance, and analysis-ready datasets.",
 }
 
 export default function ProjectsPage() {

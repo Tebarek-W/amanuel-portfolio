@@ -3,60 +3,66 @@ import { CertificateCard } from "@/components/certificate-card"
 import { CredentialLightbox } from "@/components/credential-lightbox"
 import { SectionHeading } from "@/components/section-heading"
 import { Badge } from "@/components/ui/badge"
-import {
-  certificates,
-  certificateTopics,
-  type CertificateTopic,
-} from "@/data/certificates"
+import { certificates } from "@/data/certificates"
 import { experienceLetters } from "@/data/experience"
 
 export const metadata: Metadata = {
   title: "Certificates & Credentials",
   description:
-    "Verified professional certificates, Coursera specializations, field research credentials, and official experience letters of Amanuel Tadele Dabarsho.",
+    "Verified professional certificates, Coursera specializations, field research credentials, and official experience letters of Amanuel Tadele.",
 }
 
 export default function CertificatesPage() {
-  const topics = Object.keys(certificateTopics) as CertificateTopic[]
+  const courseCertificates = certificates.filter(
+    (certificate) => certificate.topic !== "field-participation"
+  )
+  const participationCertificates = certificates.filter(
+    (certificate) => certificate.topic === "field-participation"
+  )
 
   return (
     <div className="section-y">
       <div className="container-page space-y-16">
-        <div>
+        <section aria-labelledby="course-certificates-heading">
           <SectionHeading
+            id="course-certificates-heading"
             eyebrow="Certificates & Credentials"
-            title="Professional training and verified credentials"
-            description="Official course certificates from the World Bank DIME, Johns Hopkins University, the University of Michigan, and UC Davis, alongside field survey credentials and institutional service letters. Select any document to inspect the full scan."
+            title="Professional courses and specializations"
+            description="Official certificates from the World Bank DIME, Johns Hopkins University, the University of Michigan, and UC Davis. Select any certificate to inspect the full scan or verify on Coursera."
           />
 
-          <div className="mt-12 space-y-14">
-            {topics.map((topic) => {
-              const items = certificates.filter(
-                (certificate) => certificate.topic === topic
-              )
-              if (items.length === 0) return null
-              return (
-                <section key={topic} aria-labelledby={`topic-${topic}`}>
-                  <h2
-                    id={`topic-${topic}`}
-                    className="font-heading text-xl font-semibold text-ink"
-                  >
-                    {certificateTopics[topic]}
-                  </h2>
-                  <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                    {items.map((certificate) => (
-                      <CertificateCard
-                        key={certificate.id}
-                        certificate={certificate}
-                        showImage
-                      />
-                    ))}
-                  </div>
-                </section>
-              )
-            })}
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {courseCertificates.map((certificate) => (
+              <CertificateCard
+                key={certificate.id}
+                certificate={certificate}
+                showImage
+              />
+            ))}
           </div>
-        </div>
+        </section>
+
+        <section
+          aria-labelledby="field-participation-heading"
+          className="border-t border-border pt-14"
+        >
+          <SectionHeading
+            id="field-participation-heading"
+            eyebrow="Field Research Credentials"
+            title="Survey participation certificates"
+            description="Certificates awarded for quantitative household data collection, CAPI/ODK/SurveyCTO deployment, and GPS plot measurement across rural and regional surveys."
+          />
+
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {participationCertificates.map((certificate) => (
+              <CertificateCard
+                key={certificate.id}
+                certificate={certificate}
+                showImage
+              />
+            ))}
+          </div>
+        </section>
 
         <section
           aria-labelledby="experience-letters-heading"

@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { siteConfig } from "@/data/site"
-import { DownloadCvButton } from "@/components/download-cv-button"
 import { MobileNavigation } from "@/components/mobile-navigation"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -13,15 +12,15 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/80 bg-paper/90 backdrop-blur-md">
-      <div className="container-page flex h-16 items-center justify-between gap-4">
+      <div className="container-page flex h-14 items-center justify-between gap-3 sm:h-16 sm:gap-4">
         <Link
           href="/"
-          className="group flex min-w-0 flex-col focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          className="group min-w-0 flex-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
         >
-          <span className="truncate font-heading text-sm font-semibold tracking-tight text-ink sm:text-base">
+          <span className="block font-heading text-sm font-semibold tracking-tight text-ink sm:text-base">
             {siteConfig.name}
           </span>
-          <span className="truncate text-[0.7rem] tracking-[0.08em] text-ink-muted uppercase">
+          <span className="mt-0.5 hidden text-[0.7rem] tracking-[0.08em] text-ink-muted uppercase sm:block">
             Data Manager · Survey Programmer
           </span>
         </Link>
@@ -53,12 +52,7 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="flex items-center gap-2">
-          <DownloadCvButton
-            className="hidden lg:inline-flex"
-            size="default"
-            showIcon={false}
-          />
+        <div className="flex shrink-0 items-center gap-2">
           <Button
             nativeButton={false}
             render={<Link href="/contact" />}

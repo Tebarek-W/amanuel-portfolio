@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og"
 import { readFile } from "node:fs/promises"
 import { join } from "node:path"
 
-export const alt = "Amanuel Tadele Dabarsho — Research Specialist"
+export const alt = "Amanuel Tadele — Research Specialist"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -54,7 +54,7 @@ export default async function OpenGraphImage() {
               maxWidth: 620,
             }}
           >
-            Amanuel Tadele Dabarsho
+            Amanuel Tadele
           </div>
           <div
             style={{

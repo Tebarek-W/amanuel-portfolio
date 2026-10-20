@@ -44,6 +44,7 @@ export function MobileNavigation() {
           {siteConfig.nav.map((item) => (
             <SheetClose
               key={item.href}
+              nativeButton={false}
               render={
                 <Link
                   href={item.href}
@@ -58,6 +59,7 @@ export function MobileNavigation() {
           <div className="mt-3 space-y-2">
             <DownloadCvButton className="w-full" />
             <SheetClose
+              nativeButton={false}
               render={
                 <Link
                   href="/contact"

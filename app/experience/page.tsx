@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 export const metadata: Metadata = {
   title: "Experience",
   description:
-    "Professional experience of Amanuel Tadele Dabarsho as Data Manager at the Policy Studies Institute (PSI) and Database Manager at Addis Economic Research PLC (AER).",
+    "Professional experience of Amanuel Tadele as Data Manager at the Policy Studies Institute (PSI) and Database Manager at Addis Economic Research PLC (AER).",
 }
 
 export default function ExperiencePage() {

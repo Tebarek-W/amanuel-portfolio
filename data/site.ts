@@ -39,7 +39,7 @@ export type OrganizationLink = {
 }
 
 export const siteConfig = {
-  name: "Amanuel Tadele Dabarsho",
+  name: "Amanuel Tadele",
   shortName: "Amanuel Tadele",
   title: "Research Specialist",
   /** Public role line from https://sites.google.com/view/amanuel-td */
@@ -133,10 +133,8 @@ export const siteConfig = {
     },
   } satisfies Record<string, SocialLink>,
   nav: [
-    { label: "Home", href: "/" },
     { label: "About", href: "/about" },
     { label: "Experience", href: "/experience" },
-    { label: "Education", href: "/education" },
     { label: "Projects", href: "/projects" },
     { label: "Services", href: "/services" },
     { label: "Publications", href: "/publications" },
@@ -177,7 +175,7 @@ export function getPublicSocialLinks(): SocialLink[] {
 
 export const heroCopy = {
   /** Draft homepage identity line */
-  identity: "Amanuel Tadele Dabarsho | Research Specialist",
+  identity: "Amanuel Tadele | Research Specialist",
   headline: "Turning Data into Actionable Insights",
   supporting:
     "I help organizations transform their data into actionable and reliable evidence to support better decision-making — including digital data collection, survey programming, data quality assurance, statistical analysis, and machine learning.",
@@ -195,13 +193,13 @@ export const heroCopy = {
 
 export const aboutCopy = {
   summary:
-    "Amanuel is an experienced data management professional currently serving as a Data Manager at the FDRE Policy Studies Institute (PSI) and Addis Economic Research PLC (AER). He has a proven track record in data collection, field data quality supervision, data collection tool programming, and data management. He holds a Bachelor of Arts in Geography and Environmental Studies from Addis Ababa University, and an MSc in Data Science from the same university.",
+    "I am an experienced data management professional currently serving as a Data Manager at the FDRE Policy Studies Institute (PSI) and Addis Economic Research PLC (AER). I have a proven track record in data collection, field data quality supervision, data collection tool programming, and data management. I hold a Bachelor of Arts in Geography and Environmental Studies from Addis Ababa University, and an MSc in Data Science from the same university.",
   approach:
-    "He designs and programs effective CAPI and CATI data collection tools, supervises field data quality, and delivers clean analysis-ready datasets — combining technical expertise with practical research experience so decision-makers can work from evidence they can trust.",
+    "I design and program effective CAPI and CATI data collection tools, supervise field data quality, and deliver clean analysis-ready datasets — combining technical expertise with practical research experience so decision-makers can work from evidence they can trust.",
   focus:
-    "Career focus includes research data management, monitoring and evaluation support, statistical analysis, geospatial analysis, and applied machine learning for development and policy research in Ethiopia and comparable research settings.",
+    "My career focus includes research data management, monitoring and evaluation support, statistical analysis, geospatial analysis, and applied machine learning for development and policy research in Ethiopia and comparable research settings.",
   googleSiteParagraphs: [
-    "His expertise has been developed through diverse research projects with organizations such as PSI, CSA (formerly), the Oxford Martin Programme on the Future of Development at the University of Oxford, New York University Abu Dhabi, the World Bank, IFPRI, ILRI, CIMMYT, IFAD, JSI-L10K, New York University, Arba Minch University, and KU Leuven.",
-    "He is committed to adopting useful technologies and methods while ensuring data accuracy, efficiency, and reliability. His experience managing large datasets and programming CAPI/CATI instruments supports more efficient field data collection.",
+    "My expertise has been developed through diverse research projects with organizations such as PSI, CSA (formerly), the Oxford Martin Programme on the Future of Development at the University of Oxford, New York University Abu Dhabi, the World Bank, IFPRI, ILRI, CIMMYT, IFAD, JSI-L10K, New York University, Arba Minch University, and KU Leuven.",
+    "I am committed to adopting useful technologies and methods while ensuring data accuracy, efficiency, and reliability. My experience managing large datasets and programming CAPI/CATI instruments supports more efficient field data collection.",
   ] as const,
 }

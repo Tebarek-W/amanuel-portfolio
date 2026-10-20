@@ -21,12 +21,12 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description:
-    "Professional portfolio of Amanuel Tadele Dabarsho — research specialist in research data management, digital data collection, statistical analysis, geospatial analysis, and machine learning.",
+    "Professional portfolio of Amanuel Tadele — research specialist in research data management, digital data collection, statistical analysis, geospatial analysis, and machine learning.",
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
   keywords: [
-    "Amanuel Tadele Dabarsho",
+    "Amanuel Tadele",
     "research data management",
     "digital data collection",
     "SurveyCTO",

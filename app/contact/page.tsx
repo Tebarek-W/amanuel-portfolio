@@ -4,7 +4,7 @@ import { ContactSection } from "@/components/contact-section"
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Amanuel Tadele Dabarsho for research data management, digital survey systems, quality assurance, analysis, and visualization support.",
+    "Contact Amanuel Tadele for research data management, digital survey systems, quality assurance, analysis, and visualization support.",
 }
 
 export default function ContactPage() {

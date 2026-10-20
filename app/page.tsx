@@ -149,9 +149,9 @@ export default function HomePage() {
               variant="outline"
               className="mt-6"
               nativeButton={false}
-              render={<Link href="/education" />}
+              render={<Link href="/about#education-heading" />}
             >
-              View education
+              About &amp; academic credentials
             </Button>
           </div>
 
