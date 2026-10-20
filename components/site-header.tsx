@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { siteConfig } from "@/data/site"
+import { DownloadCvButton } from "@/components/download-cv-button"
 import { MobileNavigation } from "@/components/mobile-navigation"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -53,6 +54,11 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <DownloadCvButton
+            className="hidden lg:inline-flex"
+            size="default"
+            showIcon={false}
+          />
           <Button
             nativeButton={false}
             render={<Link href="/contact" />}

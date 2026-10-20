@@ -5,6 +5,7 @@ import {
   siteConfig,
 } from "@/data/site"
 import { ContactForm } from "@/components/contact-form"
+import { DownloadCvButton } from "@/components/download-cv-button"
 import { SectionHeading } from "@/components/section-heading"
 import { SocialLinks } from "@/components/social-links"
 import { Button } from "@/components/ui/button"
@@ -46,7 +47,6 @@ export function ContactSection({
                   >
                     {email.address}
                   </a>
-                  <p className="mt-1 text-xs">{email.note}</p>
                 </div>
               </li>
               <li className="flex gap-3 text-sm text-ink-muted">
@@ -86,31 +86,18 @@ export function ContactSection({
               </a>
             </div>
 
-            {!compact ? (
-              <div className="rounded-lg border border-dashed border-border bg-muted/40 p-4 text-xs leading-relaxed text-ink-muted">
-                <p className="font-medium text-ink">Details needing confirmation</p>
-                <ul className="mt-2 list-disc space-y-1 pl-4">
-                  <li>
-                    Alternate email: {siteConfig.emails.professional.address} (
-                    {siteConfig.emails.professional.note})
-                  </li>
-                  <li>
-                    LinkedIn CV alternate:{" "}
-                    {siteConfig.social.linkedInAlternate.href} (live Google Site
-                    uses /in/amantd)
-                  </li>
-                  <li>
-                    Intended domain: {siteConfig.intendedDomain} (not confirmed live)
-                  </li>
-                </ul>
-              </div>
-            ) : null}
-
             {compact ? (
-              <Button nativeButton={false} render={<Link href="/contact" />} size="lg">
-                Go to contact page
-              </Button>
-            ) : null}
+              <div className="flex flex-wrap gap-3">
+                <Button nativeButton={false} render={<Link href="/contact" />} size="lg">
+                  Go to contact page
+                </Button>
+                <DownloadCvButton size="lg" />
+              </div>
+            ) : (
+              <div className="pt-2">
+                <DownloadCvButton size="lg" />
+              </div>
+            )}
           </div>
 
           {showForm ? <ContactForm /> : null}

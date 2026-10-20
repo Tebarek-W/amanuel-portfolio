@@ -50,11 +50,6 @@ export function PublicationItem({ publication, className }: PublicationItemProps
           ) : (
             <span className="text-sm text-ink-muted">DOI: {publication.doi}</span>
           )}
-          {publication.doiStatus === "as-supplied" ? (
-            <span className="text-xs text-ink-muted">
-              Displayed as supplied — independent verification pending
-            </span>
-          ) : null}
         </div>
       ) : null}
 

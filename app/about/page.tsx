@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { ExternalLink } from "lucide-react"
+import { DownloadCvButton } from "@/components/download-cv-button"
 import { SectionHeading } from "@/components/section-heading"
 import { Button } from "@/components/ui/button"
 import { education } from "@/data/education"
-import { roleSummaries } from "@/data/projects"
 import { skillGroups } from "@/data/skills"
 import { aboutCopy, siteConfig } from "@/data/site"
 
@@ -16,8 +16,8 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="section-y">
-      <div className="container-page">
+    <div>
+      <div className="container-page section-y">
         <SectionHeading
           eyebrow="About"
           title="Bridging research design, field data, and analysis-ready evidence"
@@ -33,7 +33,6 @@ export default function AboutPage() {
               <p key={paragraph.slice(0, 48)}>{paragraph}</p>
             ))}
             <p>{aboutCopy.focus}</p>
-            <p>{siteConfig.experienceNote}</p>
             <p>
               Public profile:{" "}
               <a
@@ -69,46 +68,45 @@ export default function AboutPage() {
               ))}
               <li>{siteConfig.location}</li>
             </ul>
-            <Button nativeButton={false} render={<Link href="/contact" />}>
-              Let&apos;s Connect
-            </Button>
+            <div className="flex flex-col gap-2">
+              <DownloadCvButton className="w-full" />
+              <Button nativeButton={false} render={<Link href="/contact" />}>
+                Let&apos;s Connect
+              </Button>
+            </div>
           </aside>
         </div>
 
-        <section className="mt-16" aria-labelledby="roles-heading">
-          <SectionHeading
-            id="roles-heading"
-            eyebrow="Experience"
-            title="Documented role highlights"
-          />
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
-            {[roleSummaries.psi, roleSummaries.aer].map((role) => (
-              <article key={role.organization} className="surface-panel p-5">
-                <h3 className="font-heading text-lg font-semibold text-ink">
-                  {role.title}
-                </h3>
-                <p className="mt-1 text-sm text-ink-muted">{role.organization}</p>
-                <ul className="mt-4 space-y-2">
-                  {role.highlights.map((item) => (
-                    <li
-                      key={item}
-                      className="flex gap-2 text-sm text-ink-muted before:mt-2 before:size-1 before:shrink-0 before:rounded-full before:bg-teal before:content-['']"
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </section>
+        <div className="mt-10">
+          <Button
+            variant="outline"
+            size="lg"
+            nativeButton={false}
+            render={<Link href="/experience" />}
+          >
+            View full experience
+          </Button>
+        </div>
+      </div>
 
-        <section className="mt-16" aria-labelledby="education-heading">
-          <SectionHeading
-            id="education-heading"
-            eyebrow="Education"
-            title="Academic credentials"
-          />
+      <div className="container-page section-y !pt-16">
+        <section aria-labelledby="education-heading">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <SectionHeading
+              id="education-heading"
+              eyebrow="Education"
+              title="Academic credentials"
+            />
+            <Button
+              variant="outline"
+              size="lg"
+              nativeButton={false}
+              render={<Link href="/education" />}
+              className="shrink-0 self-start sm:self-auto"
+            >
+              View education
+            </Button>
+          </div>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             {education.map((item) => (
               <article key={item.id} className="surface-panel p-5">

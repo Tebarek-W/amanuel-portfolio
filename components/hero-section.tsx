@@ -4,6 +4,7 @@ import Link from "next/link"
 import { motion, useReducedMotion } from "motion/react"
 import { heroCopy, siteConfig } from "@/data/site"
 import { DataMotif } from "@/components/data-motif"
+import { DownloadCvButton } from "@/components/download-cv-button"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
@@ -41,6 +42,15 @@ export function HeroSection() {
             {heroCopy.supporting}
           </motion.p>
 
+          <motion.p
+            className="mt-3 max-w-xl text-base leading-relaxed text-ink-muted"
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 0.12 }}
+          >
+            {heroCopy.supportingSecondary}
+          </motion.p>
+
           <motion.div
             className="mt-8 flex flex-wrap gap-3"
             initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
@@ -52,7 +62,7 @@ export function HeroSection() {
               nativeButton={false}
               render={<Link href="/projects" />}
             >
-              Explore My Work
+              View my projects
             </Button>
             <Button
               size="lg"
@@ -60,8 +70,9 @@ export function HeroSection() {
               nativeButton={false}
               render={<Link href="/contact" />}
             >
-              Get in Touch
+              Contact me
             </Button>
+            <DownloadCvButton />
           </motion.div>
 
           <motion.ul

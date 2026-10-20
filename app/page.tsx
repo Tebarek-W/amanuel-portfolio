@@ -55,7 +55,7 @@ export default function HomePage() {
               id="projects-heading"
               eyebrow="Selected projects"
               title="Data management contributions to research programs"
-              description="Documented roles focus on survey data management, quality assurance, and delivery of analysis-ready datasets — not sole leadership of entire research programs."
+              description="Selected national, multi-region, and experimental studies demonstrating digital survey programming, field quality assurance, and delivery of analysis-ready datasets."
             />
             <Button
               variant="outline"
@@ -85,7 +85,7 @@ export default function HomePage() {
             id="services-heading"
             eyebrow="Services"
             title="Practical support for research and M&E teams"
-            description="Service offerings are grounded in documented professional practice across digital collection, quality assurance, analysis, reporting, and GIS."
+            description="End-to-end research data management services across digital survey programming, high-frequency quality checks, statistical analysis, reporting, and GIS."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {services.map((service, index) => (
@@ -145,6 +145,14 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
+            <Button
+              variant="outline"
+              className="mt-6"
+              nativeButton={false}
+              render={<Link href="/education" />}
+            >
+              View education
+            </Button>
           </div>
 
           <div>
@@ -184,7 +192,7 @@ export default function HomePage() {
               id="publications-heading"
               eyebrow="Publications"
               title="Research data outputs"
-              description="Documented publication and research data records with accurate authorship as supplied."
+              description="Published research datasets and collaborative survey outputs."
             />
             <Button
               variant="outline"

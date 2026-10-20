@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { Menu } from "lucide-react"
 import { siteConfig } from "@/data/site"
+import { DownloadCvButton } from "@/components/download-cv-button"
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
@@ -54,17 +55,20 @@ export function MobileNavigation() {
               {item.label}
             </SheetClose>
           ))}
-          <SheetClose
-            render={
-              <Link
-                href="/contact"
-                className="mt-3 inline-flex items-center justify-center rounded-md bg-ink px-3 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-ink/90"
-                onClick={() => setOpen(false)}
-              />
-            }
-          >
-            Let&apos;s Connect
-          </SheetClose>
+          <div className="mt-3 space-y-2">
+            <DownloadCvButton className="w-full" />
+            <SheetClose
+              render={
+                <Link
+                  href="/contact"
+                  className="inline-flex w-full items-center justify-center rounded-md bg-ink px-3 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-ink/90"
+                  onClick={() => setOpen(false)}
+                />
+              }
+            >
+              Let&apos;s Connect
+            </SheetClose>
+          </div>
         </nav>
       </SheetContent>
     </Sheet>

@@ -6,16 +6,10 @@ export type Publication = {
   venue: string
   dateLabel: string
   doi?: string
-  doiStatus: "as-supplied" | "verified"
   note?: string
   url?: string
 }
 
-/**
- * Publications and research data outputs documented in the CV / website brief.
- * DOI is displayed as supplied. Independent verification was not confirmed
- * (doi.org resolution did not return a clear public landing page at build time).
- */
 export const publications: Publication[] = [
   {
     id: "pwd-national-survey-data",
@@ -38,13 +32,15 @@ export const publications: Publication[] = [
     venue: "Policy Studies Institute (PSI) — Research Data Management",
     dateLabel: "Sep 23, 2026",
     doi: "10.5072/FK2/ZSVJ4B",
-    doiStatus: "as-supplied",
-    note: "Research data record listed in the CV and website brief. DOI shown as supplied; independent verification pending.",
+    note: "National household survey dataset and research data documentation (9,200 household interviews).",
     url: "https://doi.org/10.5072/FK2/ZSVJ4B",
   },
 ]
 
-export function formatAuthorList(authors: string[], highlightName = "Amanuel Tadele"): string {
+export function formatAuthorList(
+  authors: string[],
+  highlightName = "Amanuel Tadele"
+): string {
   return authors
     .map((author) => (author === highlightName ? author : author))
     .join(", ")

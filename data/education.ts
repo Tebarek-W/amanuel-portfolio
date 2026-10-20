@@ -6,6 +6,9 @@ export type EducationItem = {
   distinction?: string
   thesisOrEssay?: string
   statusNote?: string
+  credentialImage?: string
+  credentialTitle?: string
+  credentialSerial?: string
 }
 
 export const education: EducationItem[] = [
@@ -17,7 +20,7 @@ export const education: EducationItem[] = [
     distinction: "Grade awarded: Very Good",
     thesisOrEssay:
       "Predicting Incomplete Vaccination Schedule among Under-Five Children in Ethiopia Using Supervised Machine Learning",
-    statusNote: "Thesis defended Sep 29, 2026 (per CV).",
+    statusNote: "Thesis defended September 29, 2026.",
   },
   {
     id: "ba-geography",
@@ -26,5 +29,9 @@ export const education: EducationItem[] = [
     dateLabel: "Oct 2011 – Jul 2014",
     thesisOrEssay:
       "Visualization of Health Service Accessibility in Addis Ababa using GIS",
+    statusNote: "Conferred by the Senate of Addis Ababa University on July 8, 2014.",
+    credentialImage: "/credentials/aau-ba-geography-diploma.jpg",
+    credentialTitle: "Bachelor of Arts Diploma — Addis Ababa University",
+    credentialSerial: "Diploma No. 122369",
   },
 ]

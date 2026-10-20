@@ -7,7 +7,6 @@ import {
   getProjectBySlug,
   projectCategories,
 } from "@/data/projects"
-import { siteConfig } from "@/data/site"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
 import { ArrowLeft, ExternalLink } from "lucide-react"
@@ -159,9 +158,7 @@ async function ProjectDetailContent({
             Related public source
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-            Linked from Amanuel&apos;s public Google Site contributions list.
-            This is a project or institutional page, not a claim of sole
-            authorship of the full research program.
+            Institutional research page or project brief associated with this study.
           </p>
           <a
             href={project.externalUrl}
@@ -174,21 +171,6 @@ async function ProjectDetailContent({
           </a>
         </section>
       ) : null}
-
-      <p className="mt-10 rounded-lg border border-dashed border-border bg-muted/40 p-4 text-xs leading-relaxed text-ink-muted">
-        Findings, methodology details, and outcomes are not invented here.
-        Content is limited to roles, dates, organizations, survey scales, and
-        public links documented in the CV, website brief, and{" "}
-        <a
-          href={siteConfig.dataManagementContributions.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-teal underline-offset-2 hover:underline"
-        >
-          Google Site contributions page
-        </a>
-        .
-      </p>
     </>
   )
 }

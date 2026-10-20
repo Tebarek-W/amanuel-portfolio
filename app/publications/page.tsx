@@ -15,8 +15,8 @@ export default function PublicationsPage() {
       <div className="container-page">
         <SectionHeading
           eyebrow="Publications"
-          title="Research data and documented outputs"
-          description="Only records supplied in the CV and website brief are listed. Journal names, abstracts, and peer-review status are not invented."
+          title="Research data and scholarly outputs"
+          description="Published research datasets and collaborative survey outputs."
         />
 
         <div className="mt-10 space-y-5">
@@ -27,16 +27,6 @@ export default function PublicationsPage() {
             />
           ))}
         </div>
-
-        <p className="mt-8 text-sm text-ink-muted">
-          The website brief includes a Journals heading without additional
-          journal entries. When verified journal publications are available,
-          they can be added to{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-xs">
-            data/publications.ts
-          </code>
-          .
-        </p>
       </div>
     </div>
   )
