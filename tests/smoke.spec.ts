@@ -8,7 +8,9 @@ const routes = [
   "/services",
   "/publications",
   "/certificates",
+  "/blog",
   "/contact",
+  "/admin/login",
 ]
 
 test.describe("portfolio smoke", () => {

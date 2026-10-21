@@ -30,10 +30,7 @@ export function SiteHeader() {
           className="hidden items-center justify-center gap-1 justify-self-center md:flex"
         >
           {siteConfig.nav.map((item) => {
-            const active =
-              item.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(item.href)
+            const active = pathname.startsWith(item.href)
             return (
               <Link
                 key={item.href}

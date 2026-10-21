@@ -29,6 +29,27 @@ npx playwright test   # Smoke tests (requires build + Chromium)
 
 Optional: set `NEXT_PUBLIC_SITE_URL` for sitemap absolute URLs (defaults to `https://amanueltd.com.et`).
 
+## Blog & admin
+
+The public **Blog** page (`/blog`) lists published articles and achievements. The owner manages posts at `/admin` after signing in with a password.
+
+### Setup
+
+1. Create a free [Neon](https://neon.tech) Postgres database.
+2. Copy `.env.example` to `.env.local` and fill in:
+   - `DATABASE_URL` — Neon connection string
+   - `ADMIN_PASSWORD` — strong password for `/admin/login`
+   - `SESSION_SECRET` — long random string (16+ characters)
+3. Push the schema:
+
+```bash
+npm run db:push
+```
+
+4. Start the app and open [http://localhost:3000/admin/login](http://localhost:3000/admin/login).
+
+On Vercel, add the same env vars in Project Settings → Environment Variables.
+
 ## Content editing
 
 Typed content lives under `data/`:
@@ -42,6 +63,8 @@ Typed content lives under `data/`:
 | `data/certificates.ts` | Certificates |
 | `data/skills.ts` | Skills, expertise, workflow |
 | `data/education.ts` | Education |
+
+Blog posts and achievements are stored in Postgres (not in `data/`).
 
 **Confirm before treating as verified public facts** (see comments in `data/site.ts`):
 
@@ -61,9 +84,10 @@ The form validates client-side and opens a `mailto:` draft. No backend email ser
 1. Push the repository to GitHub/GitLab/Bitbucket.
 2. Import the project in [Vercel](https://vercel.com/new).
 3. Framework preset: Next.js (auto-detected).
-4. Optional env: `NEXT_PUBLIC_SITE_URL=https://amanueltd.com.et`
-5. After registering the domain, add `amanueltd.com.et` in Vercel → Domains and set DNS as instructed.
-6. Once the domain is live, set `metadataBase` in `app/layout.tsx` to that origin for canonical/OG URLs.
+4. Set env vars: `NEXT_PUBLIC_SITE_URL`, `DATABASE_URL`, `ADMIN_PASSWORD`, `SESSION_SECRET`.
+5. Run `npm run db:push` against the production database (or use Neon’s SQL editor / drizzle from CI).
+6. After registering the domain, add `amanueltd.com.et` in Vercel → Domains and set DNS as instructed.
+7. Once the domain is live, set `metadataBase` in `app/layout.tsx` to that origin for canonical/OG URLs.
 
 ## Source materials
 

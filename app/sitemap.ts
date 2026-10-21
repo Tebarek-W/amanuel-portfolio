@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next"
 import { getAllProjectSlugs } from "@/data/projects"
+import { getPublishedPosts } from "@/lib/posts"
 
 /**
  * Sitemap with relative-friendly absolute URLs.
@@ -9,7 +10,7 @@ import { getAllProjectSlugs } from "@/data/projects"
 const baseUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://amanueltd.com.et"
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = [
     "",
     "/about",
@@ -18,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services",
     "/publications",
     "/certificates",
+    "/blog",
     "/contact",
   ]
 
@@ -25,11 +27,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     (slug) => `/projects/${slug}`
   )
 
-  return [...staticRoutes, ...projectRoutes].map((path) => ({
+  let blogRoutes: string[] = []
+  try {
+    const posts = await getPublishedPosts("all")
+    blogRoutes = posts.map((post) => `/blog/${post.slug}`)
+  } catch {
+    blogRoutes = []
+  }
+
+  return [...staticRoutes, ...projectRoutes, ...blogRoutes].map((path) => ({
     url: `${baseUrl}${path}`,
     // Fixed lastModified avoids unstable `new Date()` during prerender with cacheComponents.
-    lastModified: "2026-10-19",
-    changeFrequency: path.startsWith("/projects/") ? "monthly" : "weekly",
-    priority: path === "" ? 1 : path.startsWith("/projects/") ? 0.7 : 0.8,
+    lastModified: "2026-10-21",
+    changeFrequency: path.startsWith("/projects/") || path.startsWith("/blog/")
+      ? "monthly"
+      : "weekly",
+    priority:
+      path === ""
+        ? 1
+        : path.startsWith("/projects/") || path.startsWith("/blog/")
+          ? 0.7
+          : 0.8,
   }))
 }

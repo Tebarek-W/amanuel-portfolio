@@ -3,6 +3,7 @@ import { CertificateCard } from "@/components/certificate-card"
 import { ContactSection } from "@/components/contact-section"
 import { ExpertiseCard } from "@/components/expertise-card"
 import { HeroSection } from "@/components/hero-section"
+import { LatestBlogSection } from "@/components/latest-blog-section"
 import { ProjectCard } from "@/components/project-card"
 import { PublicationItem } from "@/components/publication-item"
 import { SectionHeading } from "@/components/section-heading"
@@ -214,6 +215,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <LatestBlogSection />
 
       <div className="border-b border-border bg-paper">
         <ContactSection compact />

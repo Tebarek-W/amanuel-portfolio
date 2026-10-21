@@ -139,6 +139,7 @@ export const siteConfig = {
     { label: "Services", href: "/services" },
     { label: "Publications", href: "/publications" },
     { label: "Certificates", href: "/certificates" },
+    { label: "Blog", href: "/blog" },
   ] as const,
   experienceNote:
     "Experienced data management professional. Public Google Site and website draft describe more than seven years of experience; the CV summary says more than four. Exact totals are omitted until confirmed.",
