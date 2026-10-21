@@ -7,6 +7,7 @@ import { MarkdownContent } from "@/components/markdown-content"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
 import { getPublishedPostBySlug } from "@/lib/posts"
+import { pageSeo } from "@/lib/seo"
 import { cn } from "@/lib/utils"
 import { ArrowLeft } from "lucide-react"
 
@@ -24,10 +25,17 @@ export async function generateMetadata({
   try {
     const post = await getPublishedPostBySlug(slug)
     if (!post) return { title: "Post not found" }
-    return {
+    const description = post.excerpt || post.title
+    return pageSeo({
       title: post.title,
-      description: post.excerpt || post.title,
-    }
+      description,
+      path: `/blog/${post.slug}`,
+      type: "article",
+      publishedTime: post.publishedAt?.toISOString(),
+      images: post.coverImageUrl
+        ? [post.coverImageUrl, "/opengraph-image"]
+        : ["/opengraph-image"],
+    })
   } catch {
     return { title: "Blog" }
   }

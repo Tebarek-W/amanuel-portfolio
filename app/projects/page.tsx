@@ -3,12 +3,14 @@ import { ContributionsList } from "@/components/contributions-list"
 import { ProjectsFilter } from "@/components/projects-filter"
 import { SectionHeading } from "@/components/section-heading"
 import { projects } from "@/data/projects"
+import { pageSeo } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
   title: "Projects",
   description:
     "Selected research projects and data management contributions where Amanuel Tadele supported survey operations, quality assurance, and analysis-ready datasets.",
-}
+  path: "/projects",
+})
 
 export default function ProjectsPage() {
   return (

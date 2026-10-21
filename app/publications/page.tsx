@@ -2,12 +2,14 @@ import type { Metadata } from "next"
 import { PublicationItem } from "@/components/publication-item"
 import { SectionHeading } from "@/components/section-heading"
 import { publications } from "@/data/publications"
+import { pageSeo } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
   title: "Publications",
   description:
     "Publications and research data outputs associated with Amanuel Tadele, including the National Survey on Persons with Disabilities in Ethiopia research data record.",
-}
+  path: "/publications",
+})
 
 export default function PublicationsPage() {
   return (

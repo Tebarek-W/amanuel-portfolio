@@ -9,6 +9,7 @@ import {
 } from "@/data/projects"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
+import { pageSeo } from "@/lib/seo"
 import { ArrowLeft, ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -26,10 +27,11 @@ export async function generateMetadata({
   if (!project) {
     return { title: "Project not found" }
   }
-  return {
+  return pageSeo({
     title: project.title,
     description: project.summary,
-  }
+    path: `/projects/${project.slug}`,
+  })
 }
 
 export default function ProjectDetailPage({ params }: ProjectPageProps) {

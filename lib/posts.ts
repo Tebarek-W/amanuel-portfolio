@@ -12,32 +12,64 @@ export function slugify(input: string) {
     .slice(0, 180)
 }
 
+function isTransientDbError(error: unknown) {
+  const message =
+    error instanceof Error
+      ? `${error.message} ${error.cause instanceof Error ? error.cause.message : ""}`
+      : String(error)
+  return /fetch failed|ECONNRESET|ETIMEDOUT|network|connecting to database/i.test(
+    message
+  )
+}
+
+async function safeQuery<T>(fallback: T, run: () => Promise<T>): Promise<T> {
+  const attempts = 3
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      return await run()
+    } catch (error) {
+      const retry = attempt < attempts && isTransientDbError(error)
+      console.error(
+        `[posts] database query failed (attempt ${attempt}/${attempts}):`,
+        error
+      )
+      if (!retry) return fallback
+      await new Promise((resolve) => setTimeout(resolve, 250 * attempt))
+    }
+  }
+  return fallback
+}
+
 export async function getPublishedPosts(type?: PostType | "all") {
   if (!isDatabaseConfigured()) return [] as Post[]
-  const db = getDb()
-  if (type && type !== "all") {
+  return safeQuery([] as Post[], async () => {
+    const db = getDb()
+    if (type && type !== "all") {
+      return db
+        .select()
+        .from(posts)
+        .where(and(eq(posts.published, true), eq(posts.type, type)))
+        .orderBy(desc(posts.publishedAt), desc(posts.createdAt))
+    }
     return db
       .select()
       .from(posts)
-      .where(and(eq(posts.published, true), eq(posts.type, type)))
+      .where(eq(posts.published, true))
       .orderBy(desc(posts.publishedAt), desc(posts.createdAt))
-  }
-  return db
-    .select()
-    .from(posts)
-    .where(eq(posts.published, true))
-    .orderBy(desc(posts.publishedAt), desc(posts.createdAt))
+  })
 }
 
 export async function getPublishedPostBySlug(slug: string) {
   if (!isDatabaseConfigured()) return null
-  const db = getDb()
-  const rows = await db
-    .select()
-    .from(posts)
-    .where(and(eq(posts.slug, slug), eq(posts.published, true)))
-    .limit(1)
-  return rows[0] ?? null
+  return safeQuery(null, async () => {
+    const db = getDb()
+    const rows = await db
+      .select()
+      .from(posts)
+      .where(and(eq(posts.slug, slug), eq(posts.published, true)))
+      .limit(1)
+    return rows[0] ?? null
+  })
 }
 
 export async function getAllPostsAdmin() {

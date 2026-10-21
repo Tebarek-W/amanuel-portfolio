@@ -3,12 +3,17 @@ import { Suspense } from "react"
 import { BlogFilters } from "@/components/blog-filters"
 import { SectionHeading } from "@/components/section-heading"
 import { getPublishedPosts } from "@/lib/posts"
+import { pageSeo } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
   title: "Blog",
   description:
     "Articles and professional achievements from Amanuel Tadele — research data management, survey systems, and analysis.",
-}
+  path: "/blog",
+})
+
+/** Database-backed list — keep out of the static Instant Shell. */
+export const instant = false
 
 export default function BlogPage() {
   return (

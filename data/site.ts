@@ -1,47 +1,20 @@
 /**
- * Central site configuration.
- *
- * Sources:
- * - CV (Oct 2026)
- * - Website draft Google Doc + local brief (files/AT Website.docx,
- *   files/website-draft-google-doc.txt)
- * - Public Google Site https://sites.google.com/view/amanuel-td
- *
- * CONFIRMATION FLAGS:
- * - preferredPublicEmail: CV + draft Contacts use amangeo251@gmail.com;
- *   draft header also lists amanuel@amanueltd.com.et (intended domain email).
- * - linkedIn: live Google Site + draft use /in/amantd; CV lists /in/amantdin.
- * - telegram: Google Site uses t.me/amanuel_td; draft uses t.me/amanueltd.
- * - yearsOfExperience: Confirmed for public site as 7+ (Google Site + website draft).
- * - domain: amanueltd.com.et is the intended production domain (not confirmed live).
+ * Central site configuration for the public portfolio.
  */
-
-export type ConfirmationStatus = "confirmed" | "needs_confirmation" | "intended"
 
 export type SocialLink = {
   label: string
   href: string
-  status: ConfirmationStatus
-  note?: string
 }
 
 export type ContactEmail = {
   address: string
-  status: ConfirmationStatus
-  note: string
-}
-
-export type OrganizationLink = {
-  name: string
-  href?: string
-  shortName?: string
 }
 
 export const siteConfig = {
   name: "Amanuel Tadele",
   shortName: "Amanuel Tadele",
   title: "Research Specialist",
-  /** Public role line from https://sites.google.com/view/amanuel-td */
   roleLine: "Data Manager | Research Assistant | Research/Survey Programmer",
   tagline: "Turning Data into Actionable Insights",
   location: "Addis Ababa, Ethiopia",
@@ -50,30 +23,12 @@ export const siteConfig = {
   emails: {
     gmail: {
       address: "amangeo251@gmail.com",
-      status: "needs_confirmation" as ConfirmationStatus,
-      note: "Listed on CV and in the website brief Contacts section.",
-    },
-    professional: {
-      address: "amanuel@amanueltd.com.et",
-      status: "intended" as ConfirmationStatus,
-      note: "Listed at the top of the website brief as the domain email. Confirm before public use.",
     },
   } satisfies Record<string, ContactEmail>,
-  intendedDomain: "amanueltd.com.et",
-  domainStatus: "intended" as ConfirmationStatus,
   personalSite: {
     label: "Public Google Site",
     href: "https://sites.google.com/view/amanuel-td",
-    status: "confirmed" as ConfirmationStatus,
-    note: "Live public profile used as a content and link source.",
   },
-  dataManagementContributions: {
-    label: "Data management contributions",
-    href: "https://sites.google.com/view/amanuel-td/data-management-contributions-in-research-projects",
-    status: "confirmed" as ConfirmationStatus,
-    note: "Mirrored on /projects as a year-grouped list; each item links to portfolio details and original source pages where available.",
-  },
-  /** Served from /public — copied from files/Amanuel Tadele_CV_cred@Oct 2026.docx */
   cvDownload: {
     label: "Download CV",
     href: "/Amanuel-Tadele-Dabarsho-CV.docx",
@@ -82,13 +37,11 @@ export const siteConfig = {
   employers: [
     {
       name: "FDRE Policy Studies Institute (PSI)",
-      shortName: "PSI",
       href: "https://psi.org.et",
       role: "Data Manager",
     },
     {
       name: "Addis Economic Research PLC (AER)",
-      shortName: "AER",
       href: "https://aer.et",
       role: "Database Manager",
     },
@@ -97,38 +50,18 @@ export const siteConfig = {
     linkedInPrimary: {
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/amantd",
-      status: "confirmed" as ConfirmationStatus,
-      note: "Linked from the live Google Site and website brief. CV lists /in/amantdin as an alternate.",
-    },
-    linkedInAlternate: {
-      label: "LinkedIn (CV alternate)",
-      href: "https://www.linkedin.com/in/amantdin",
-      status: "needs_confirmation" as ConfirmationStatus,
-      note: "From CV only. Not linked on the live Google Site.",
     },
     github: {
       label: "GitHub",
       href: "https://github.com/amanueltd",
-      status: "confirmed" as ConfirmationStatus,
-      note: "Linked from the live Google Site.",
     },
     x: {
       label: "X",
       href: "https://x.com/amanuel_td",
-      status: "confirmed" as ConfirmationStatus,
-      note: "Google Site links twitter.com/amanuel_td; X URL used as the current equivalent.",
     },
     telegram: {
       label: "Telegram",
       href: "https://t.me/amanuel_td",
-      status: "needs_confirmation" as ConfirmationStatus,
-      note: "Google Site uses t.me/amanuel_td; website draft uses t.me/amanueltd. Confirm which is current.",
-    },
-    telegramAlternate: {
-      label: "Telegram (draft alternate)",
-      href: "https://t.me/amanueltd",
-      status: "needs_confirmation" as ConfirmationStatus,
-      note: "From website draft Contacts. Google Site uses amanuel_td.",
     },
   } satisfies Record<string, SocialLink>,
   nav: [
@@ -139,24 +72,6 @@ export const siteConfig = {
     { label: "Publications", href: "/publications" },
     { label: "Certificates", href: "/certificates" },
     { label: "Blog", href: "/blog" },
-  ] as const,
-  experienceNote:
-    "Data management professional with 7+ years of experience.",
-  organizationsMentioned: [
-    "FDRE Policy Studies Institute (PSI)",
-    "Addis Economic Research PLC (AER)",
-    "Central Statistics Agency (formerly CSA)",
-    "Oxford Martin Programme on the Future of Development",
-    "New York University Abu Dhabi",
-    "World Bank",
-    "IFPRI",
-    "ILRI",
-    "CIMMYT",
-    "IFAD",
-    "JSI-L10K",
-    "New York University",
-    "Arba Minch University",
-    "KU Leuven",
   ] as const,
 } as const
 
@@ -174,13 +89,10 @@ export function getPublicSocialLinks(): SocialLink[] {
 }
 
 export const heroCopy = {
-  /** Draft homepage identity line */
   identity: "Amanuel Tadele | Research Specialist",
   headline: "Turning Data into Actionable Insights",
   supporting:
     "I help organizations transform their data into actionable and reliable evidence to support better decision-making — including digital data collection, survey programming, data quality assurance, statistical analysis, and machine learning.",
-  supportingSecondary:
-    "I bring together technical expertise and practical research experience to improve data collection, ensure high data quality, generate insights, and support decisions based on evidence.",
   expertiseLabels: [
     "Digital Data Collection",
     "Data Analysis",

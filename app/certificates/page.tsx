@@ -5,12 +5,14 @@ import { SectionHeading } from "@/components/section-heading"
 import { Badge } from "@/components/ui/badge"
 import { certificates } from "@/data/certificates"
 import { experienceLetters } from "@/data/experience"
+import { pageSeo } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
   title: "Certificates & Credentials",
   description:
     "Verified professional certificates, Coursera specializations, field research credentials, and official experience letters of Amanuel Tadele.",
-}
+  path: "/certificates",
+})
 
 export default function CertificatesPage() {
   const courseCertificates = certificates.filter(

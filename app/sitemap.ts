@@ -1,14 +1,9 @@
 import type { MetadataRoute } from "next"
 import { getAllProjectSlugs } from "@/data/projects"
 import { getPublishedPosts } from "@/lib/posts"
+import { getSiteUrl } from "@/lib/seo"
 
-/**
- * Sitemap with relative-friendly absolute URLs.
- * Update baseUrl in data/site.ts / here once amanueltd.com.et is confirmed live.
- * Until then, Vercel preview / deployment host should be configured via env if needed.
- */
-const baseUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://amanueltd.com.et"
+const baseUrl = getSiteUrl()
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = [

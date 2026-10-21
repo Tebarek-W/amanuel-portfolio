@@ -3,12 +3,14 @@ import Link from "next/link"
 import { SectionHeading } from "@/components/section-heading"
 import { Button } from "@/components/ui/button"
 import { services } from "@/data/services"
+import { pageSeo } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
   title: "Services",
   description:
     "Professional services in digital data collection, data quality assurance, research and M&E support, statistical analysis, visualization, and geospatial analysis.",
-}
+  path: "/services",
+})
 
 export default function ServicesPage() {
   return (

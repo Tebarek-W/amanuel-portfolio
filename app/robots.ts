@@ -1,15 +1,15 @@
 import type { MetadataRoute } from "next"
+import { getSiteUrl } from "@/lib/seo"
 
-/**
- * Robots configuration.
- * Host is left relative until amanueltd.com.et is confirmed as the live domain.
- */
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = getSiteUrl()
+
   return {
     rules: {
       userAgent: "*",
       allow: "/",
       disallow: ["/admin", "/admin/"],
     },
+    sitemap: `${baseUrl}/sitemap.xml`,
   }
 }

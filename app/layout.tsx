@@ -1,8 +1,10 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
+import { JsonLd } from "@/components/json-ld"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { siteConfig } from "@/data/site"
+import { getSiteUrl } from "@/lib/seo"
 import "./globals.css"
 
 const geistSans = Geist({
@@ -15,13 +17,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 })
 
+const siteUrl = getSiteUrl()
+const rootTitle = `${siteConfig.name} | ${siteConfig.title}`
+const rootDescription =
+  "Professional portfolio of Amanuel Tadele — research specialist in research data management, digital data collection, statistical analysis, geospatial analysis, and machine learning."
+const ogDescription =
+  "Turning data into actionable insights through research data management, digital surveys, quality assurance, and analysis."
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: `${siteConfig.name} | ${siteConfig.title}`,
+    default: rootTitle,
     template: `%s | ${siteConfig.name}`,
   },
-  description:
-    "Professional portfolio of Amanuel Tadele — research specialist in research data management, digital data collection, statistical analysis, geospatial analysis, and machine learning.",
+  description: rootDescription,
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
@@ -36,19 +45,24 @@ export const metadata: Metadata = {
     "Ethiopia",
     "Policy Studies Institute",
   ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: `${siteConfig.name} | ${siteConfig.title}`,
-    description:
-      "Turning data into actionable insights through research data management, digital surveys, quality assurance, and analysis.",
+    url: "/",
+    title: rootTitle,
+    description: ogDescription,
     siteName: siteConfig.name,
+    images: ["/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} | ${siteConfig.title}`,
+    title: rootTitle,
     description:
       "Research specialist focused on research data management, digital data collection, and evidence for decision-making.",
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
@@ -63,6 +77,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">
+        <JsonLd />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-ink focus:px-3 focus:py-2 focus:text-sm focus:text-primary-foreground"

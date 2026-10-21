@@ -48,3 +48,9 @@ next-env.d.ts
 /playwright-report/
 /test-results/
 /playwright/.cache/
+
+# Local source materials (CV / drafts) — keep off the deploy repo
+/files/
+
+# Local source materials (CV/briefs) — not needed at runtime
+/files/
