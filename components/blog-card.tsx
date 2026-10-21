@@ -20,7 +20,7 @@ function formatDate(value: Date | null) {
 
 export function BlogCard({ post, className }: BlogCardProps) {
   return (
-    <article className={cn("surface-panel flex h-full flex-col overflow-hidden", className)}>
+    <article className={cn("surface-panel-interactive flex h-full flex-col overflow-hidden", className)}>
       {post.coverImageUrl ? (
         <Link href={`/blog/${post.slug}`} className="relative block aspect-[16/9] bg-muted">
           <Image

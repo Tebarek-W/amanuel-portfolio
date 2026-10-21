@@ -12,10 +12,7 @@ export function ExpertiseCard({ area, index = 0, className }: ExpertiseCardProps
   return (
     <MotionReveal delay={Math.min(index * 0.05, 0.25)}>
       <article
-        className={cn(
-          "surface-panel h-full p-5 transition-colors hover:border-teal/30",
-          className
-        )}
+        className={cn("surface-panel-interactive h-full p-5 sm:p-6", className)}
       >
         <div className="mb-3 flex items-center gap-3">
           <span

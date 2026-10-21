@@ -27,10 +27,14 @@ export default function HomePage() {
 
       <section
         id="expertise"
-        className="section-y"
+        className="section-y relative overflow-hidden"
         aria-labelledby="expertise-heading"
       >
-        <div className="container-page">
+        <div
+          className="pointer-events-none absolute inset-0 editorial-grid opacity-[0.35]"
+          aria-hidden
+        />
+        <div className="container-page relative">
           <SectionHeading
             id="expertise-heading"
             eyebrow="Expertise"

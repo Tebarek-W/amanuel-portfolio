@@ -17,7 +17,7 @@ export function ProjectCard({ project, index = 0, className }: ProjectCardProps)
     <MotionReveal delay={Math.min(index * 0.04, 0.2)}>
       <article
         className={cn(
-          "surface-panel group flex h-full flex-col p-5 transition-colors hover:border-teal/35",
+          "surface-panel-interactive group flex h-full flex-col p-5",
           className
         )}
       >

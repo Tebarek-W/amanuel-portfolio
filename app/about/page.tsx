@@ -28,8 +28,8 @@ function ProfileCard({
   priority?: boolean
 }) {
   return (
-    <aside className={cn("surface-panel h-fit space-y-3.5 p-4", className)}>
-      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-md border border-border/80 bg-muted">
+    <aside className={cn("surface-panel h-fit space-y-4 p-4 sm:p-5", className)}>
+      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-lg border border-border/70 bg-muted shadow-[inset_0_0_0_1px_oklch(1_0_0_/_0.4)]">
         <Image
           src={media.portrait.src}
           alt={media.portrait.alt}
@@ -39,26 +39,34 @@ function ProfileCard({
           priority={priority}
         />
       </div>
-      <h2 className="font-heading text-base font-semibold text-ink">Currently</h2>
-      <ul className="space-y-2.5 text-sm text-ink-muted">
+      <div>
+        <p className="font-mono text-[0.65rem] tracking-[0.14em] text-teal uppercase">
+          Profile
+        </p>
+        <h2 className="mt-1 font-heading text-lg font-semibold tracking-tight text-ink">
+          {siteConfig.name}
+        </h2>
+        <p className="mt-1 text-sm text-ink-muted">Currently</p>
+      </div>
+      <ul className="space-y-3 text-sm text-ink-muted">
         {siteConfig.employers.map((employer) => (
-          <li key={employer.href}>
+          <li key={employer.href} className="border-t border-border/70 pt-3 first:border-t-0 first:pt-0">
             <span className="font-medium text-ink">{employer.role}</span>
             <br />
             <a
               href={employer.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-teal hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+              className="mt-0.5 inline-flex items-center gap-1 text-teal hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             >
               {employer.name}
               <ExternalLink className="size-3.5" aria-hidden />
             </a>
           </li>
         ))}
-        <li>{siteConfig.location}</li>
+        <li className="border-t border-border/70 pt-3">{siteConfig.location}</li>
       </ul>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 border-t border-border/70 pt-4">
         <DownloadCvButton className="w-full" />
         <Button nativeButton={false} render={<Link href="/contact" />}>
           Let&apos;s Connect
@@ -71,65 +79,67 @@ function ProfileCard({
 export default function AboutPage() {
   return (
     <div>
-      <div className="container-page section-y">
-        <div className="grid items-start gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="min-w-0">
-            <SectionHeading
-              eyebrow="About"
-              title="Bridging research design, field data, and analysis-ready evidence"
-              description={aboutCopy.summary}
-            />
+      <div className="hero-glow border-b border-border">
+        <div className="container-page section-y !pb-12 sm:!pb-16">
+          <div className="grid items-start gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+            <div className="min-w-0">
+              <SectionHeading
+                eyebrow="About"
+                title="Bridging research design, field data, and analysis-ready evidence"
+                description={aboutCopy.summary}
+              />
 
-            <p className="mt-4 font-mono text-xs leading-relaxed text-teal sm:text-sm">
-              {siteConfig.roleLine}
-            </p>
+              <p className="mt-4 font-mono text-xs leading-relaxed text-teal sm:text-sm">
+                {siteConfig.roleLine}
+              </p>
+
+              <ProfileCard
+                className="mx-auto mt-8 w-full max-w-[14rem] sm:max-w-[16rem] lg:hidden"
+                imageSizes="224px"
+                priority
+              />
+
+              <div className="mt-8 space-y-5 text-[0.95rem] leading-relaxed text-ink-muted sm:mt-10 sm:space-y-6 sm:text-base">
+                <p>{aboutCopy.approach}</p>
+                {aboutCopy.googleSiteParagraphs.map((paragraph) => (
+                  <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+                ))}
+                <p>{aboutCopy.focus}</p>
+                <p>
+                  Public profile:{" "}
+                  <a
+                    href={siteConfig.personalSite.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="break-all font-medium text-teal underline-offset-2 hover:underline sm:break-normal"
+                  >
+                    sites.google.com/view/amanuel-td
+                  </a>
+                </p>
+              </div>
+
+              <div className="mt-8 sm:mt-10">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                  nativeButton={false}
+                  render={<Link href="/experience" />}
+                >
+                  View full experience
+                </Button>
+              </div>
+            </div>
 
             <ProfileCard
-              className="mx-auto mt-8 w-full max-w-[14rem] sm:max-w-[16rem] lg:hidden"
-              imageSizes="224px"
-              priority
+              className="mx-auto hidden w-4/5 lg:ml-auto lg:mr-0 lg:block"
+              imageSizes="290px"
             />
-
-            <div className="mt-8 space-y-5 text-[0.95rem] leading-relaxed text-ink-muted sm:mt-10 sm:space-y-6 sm:text-base">
-              <p>{aboutCopy.approach}</p>
-              {aboutCopy.googleSiteParagraphs.map((paragraph) => (
-                <p key={paragraph.slice(0, 48)}>{paragraph}</p>
-              ))}
-              <p>{aboutCopy.focus}</p>
-              <p>
-                Public profile:{" "}
-                <a
-                  href={siteConfig.personalSite.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="break-all font-medium text-teal underline-offset-2 hover:underline sm:break-normal"
-                >
-                  sites.google.com/view/amanuel-td
-                </a>
-              </p>
-            </div>
-
-            <div className="mt-8 sm:mt-10">
-              <Button
-                variant="outline"
-                size="lg"
-                className="w-full sm:w-auto"
-                nativeButton={false}
-                render={<Link href="/experience" />}
-              >
-                View full experience
-              </Button>
-            </div>
           </div>
-
-          <ProfileCard
-            className="mx-auto hidden w-4/5 lg:ml-auto lg:mr-0 lg:block"
-            imageSizes="290px"
-          />
         </div>
       </div>
 
-      <div className="container-page section-y !pt-12 sm:!pt-16">
+      <div className="container-page section-y">
         <section aria-labelledby="education-heading">
           <SectionHeading
             id="education-heading"

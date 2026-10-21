@@ -10,7 +10,7 @@ type PublicationItemProps = {
 
 export function PublicationItem({ publication, className }: PublicationItemProps) {
   return (
-    <article className={cn("surface-panel p-5 sm:p-6", className)}>
+    <article className={cn("surface-panel-interactive p-5 sm:p-6", className)}>
       <div className="flex flex-wrap items-center gap-2">
         <Badge variant="outline">Research data</Badge>
         <span className="text-xs text-ink-muted">{publication.dateLabel}</span>

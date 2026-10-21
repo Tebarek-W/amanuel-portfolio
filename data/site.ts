@@ -12,8 +12,7 @@
  *   draft header also lists amanuel@amanueltd.com.et (intended domain email).
  * - linkedIn: live Google Site + draft use /in/amantd; CV lists /in/amantdin.
  * - telegram: Google Site uses t.me/amanuel_td; draft uses t.me/amanueltd.
- * - yearsOfExperience: Google Site + draft say 7+; CV summary says 4+.
- *   Avoid displaying an exact total until confirmed.
+ * - yearsOfExperience: Confirmed for public site as 7+ (Google Site + website draft).
  * - domain: amanueltd.com.et is the intended production domain (not confirmed live).
  */
 
@@ -142,7 +141,7 @@ export const siteConfig = {
     { label: "Blog", href: "/blog" },
   ] as const,
   experienceNote:
-    "Experienced data management professional. Public Google Site and website draft describe more than seven years of experience; the CV summary says more than four. Exact totals are omitted until confirmed.",
+    "Data management professional with 7+ years of experience.",
   organizationsMentioned: [
     "FDRE Policy Studies Institute (PSI)",
     "Addis Economic Research PLC (AER)",
@@ -194,7 +193,7 @@ export const heroCopy = {
 
 export const aboutCopy = {
   summary:
-    "I am an experienced data management professional currently serving as a Data Manager at the FDRE Policy Studies Institute (PSI) and Addis Economic Research PLC (AER). I have a proven track record in data collection, field data quality supervision, data collection tool programming, and data management. I hold a Bachelor of Arts in Geography and Environmental Studies from Addis Ababa University, and an MSc in Data Science from the same university.",
+    "I am a data management professional with 7+ years of experience, currently serving as a Data Manager at the FDRE Policy Studies Institute (PSI) and Addis Economic Research PLC (AER). I have a proven track record in data collection, field data quality supervision, data collection tool programming, and data management. I hold a Bachelor of Arts in Geography and Environmental Studies from Addis Ababa University, and an MSc in Data Science from the same university.",
   approach:
     "I design and program effective CAPI and CATI data collection tools, supervise field data quality, and deliver clean analysis-ready datasets — combining technical expertise with practical research experience so decision-makers can work from evidence they can trust.",
   focus:

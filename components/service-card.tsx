@@ -18,14 +18,14 @@ export function ServiceCard({
 }: ServiceCardProps) {
   return (
     <MotionReveal delay={Math.min(index * 0.04, 0.2)}>
-      <article className={cn("surface-panel h-full p-5", className)}>
+      <article className={cn("surface-panel-interactive group h-full p-5", className)}>
         <p className="font-mono text-xs text-teal">
           {String(index + 1).padStart(2, "0")}
         </p>
-        <h3 className="mt-3 font-heading text-lg font-semibold text-ink">
+        <h3 className="mt-3 font-heading text-lg font-semibold text-ink transition-colors group-hover:text-teal">
           <Link
             href={`${href}#${service.slug}`}
-            className="rounded-sm hover:text-teal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            className="rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
           >
             {service.title}
           </Link>

@@ -70,7 +70,7 @@ Blog posts and achievements are stored in Postgres (not in `data/`).
 
 - Preferred public email (`gmail` vs `amanuel@amanueltd.com.et`)
 - LinkedIn path (`/in/amantd` vs `/in/amantdin`)
-- Exact years of experience (CV: 4+; brief: 7+)
+- Years of experience: 7+ (confirmed for public site; matches Google Site / website draft)
 - Domain `amanueltd.com.et` (intended, not confirmed live)
 
 Private CV reference contacts are **not** published.

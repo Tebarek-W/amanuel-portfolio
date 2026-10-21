@@ -34,69 +34,65 @@ export function ContactSection({
         />
 
         <div
-          className={`mt-10 grid gap-8 ${showForm ? "lg:grid-cols-[0.9fr_1.1fr]" : ""}`}
+          className={`mt-10 grid gap-8 ${showForm ? "lg:grid-cols-[0.85fr_1.15fr] lg:items-start" : ""}`}
         >
-          <div className="space-y-6">
-            <ul className="space-y-4">
-              <li className="flex gap-3 text-sm text-ink-muted">
-                <Mail className="mt-0.5 size-4 shrink-0 text-teal" aria-hidden />
-                <div>
+          <div className="space-y-5">
+            <div className="surface-panel space-y-5 p-5 sm:p-6">
+              <div>
+                <p className="font-mono text-[0.65rem] tracking-[0.14em] text-teal uppercase">
+                  Reach me
+                </p>
+                <h3 className="mt-1 font-heading text-base font-semibold text-ink">
+                  Direct contact
+                </h3>
+              </div>
+              <ul className="space-y-4">
+                <li className="flex gap-3 text-sm text-ink-muted">
+                  <Mail className="mt-0.5 size-4 shrink-0 text-teal" aria-hidden />
                   <a
                     href={`mailto:${email.address}`}
-                    className="font-medium text-ink hover:text-teal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                    className="font-medium text-ink break-all hover:text-teal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                   >
                     {email.address}
                   </a>
-                </div>
-              </li>
-              <li className="flex gap-3 text-sm text-ink-muted">
-                <Phone className="mt-0.5 size-4 shrink-0 text-teal" aria-hidden />
-                <a
-                  href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
-                  className="font-medium text-ink hover:text-teal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-                >
-                  {siteConfig.phone}
-                </a>
-              </li>
-              <li className="flex gap-3 text-sm text-ink-muted">
-                <MapPin className="mt-0.5 size-4 shrink-0 text-teal" aria-hidden />
-                <span>{siteConfig.location}</span>
-              </li>
-            </ul>
+                </li>
+                <li className="flex gap-3 text-sm text-ink-muted">
+                  <Phone className="mt-0.5 size-4 shrink-0 text-teal" aria-hidden />
+                  <a
+                    href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
+                    className="font-medium text-ink hover:text-teal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                  >
+                    {siteConfig.phone}
+                  </a>
+                </li>
+                <li className="flex gap-3 text-sm text-ink-muted">
+                  <MapPin className="mt-0.5 size-4 shrink-0 text-teal" aria-hidden />
+                  <span>{siteConfig.location}</span>
+                </li>
+              </ul>
 
-            <SocialLinks links={social} showLabels />
-
-            <div className="space-y-2 text-sm">
-              <a
-                href={siteConfig.personalSite.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-teal underline-offset-2 hover:underline"
-              >
-                Public Google Site
-              </a>
-              <br />
-              <a
-                href={siteConfig.dataManagementContributions.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-teal underline-offset-2 hover:underline"
-              >
-                Data management contributions list
-              </a>
+              <div className="border-t border-border pt-4">
+                <p className="mb-3 text-xs font-semibold tracking-[0.12em] text-ink-muted uppercase">
+                  Social
+                </p>
+                <SocialLinks links={social} showLabels />
+              </div>
             </div>
 
             {compact ? (
-              <div className="flex flex-wrap gap-3">
-                <Button nativeButton={false} render={<Link href="/contact" />} size="lg">
+              <div className="flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
+                <Button
+                  nativeButton={false}
+                  render={<Link href="/contact" />}
+                  size="lg"
+                  className="w-full sm:w-auto"
+                >
                   Go to contact page
                 </Button>
-                <DownloadCvButton size="lg" />
+                <DownloadCvButton size="lg" className="w-full sm:w-auto" />
               </div>
             ) : (
-              <div className="pt-2">
-                <DownloadCvButton size="lg" />
-              </div>
+              <DownloadCvButton size="lg" className="w-full sm:w-auto" />
             )}
           </div>
 

@@ -136,8 +136,13 @@
     @apply py-12 sm:py-20 lg:py-24;
   }
 
-  .surface-panel {
-    @apply rounded-lg border border-border bg-surface-elevated shadow-[0_1px_2px_oklch(0.22_0.035_250_/_0.04)];
+  .surface-panel,
+  .surface-panel-interactive {
+    @apply rounded-xl border border-border/90 bg-surface-elevated shadow-[0_1px_2px_oklch(0.22_0.035_250_/_0.04),0_8px_24px_oklch(0.22_0.035_250_/_0.03)];
+  }
+
+  .surface-panel-interactive {
+    @apply transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-teal/35 hover:shadow-[0_2px_4px_oklch(0.22_0.035_250_/_0.05),0_14px_32px_oklch(0.22_0.035_250_/_0.06)];
   }
 
   .editorial-grid {
@@ -149,9 +154,9 @@
 
   .hero-glow {
     background:
-      radial-gradient(ellipse 80% 60% at 85% 20%, color-mix(in oklch, var(--teal) 12%, transparent), transparent 55%),
-      radial-gradient(ellipse 50% 40% at 10% 80%, color-mix(in oklch, var(--ink) 6%, transparent), transparent 50%),
-      linear-gradient(180deg, var(--paper), color-mix(in oklch, var(--paper) 70%, white));
+      radial-gradient(ellipse 70% 55% at 88% 12%, color-mix(in oklch, var(--teal) 16%, transparent), transparent 58%),
+      radial-gradient(ellipse 45% 35% at 8% 78%, color-mix(in oklch, var(--ink) 7%, transparent), transparent 52%),
+      linear-gradient(180deg, var(--paper), color-mix(in oklch, var(--paper) 65%, white));
   }
 }
 

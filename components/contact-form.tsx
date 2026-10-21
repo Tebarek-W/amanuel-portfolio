@@ -84,8 +84,24 @@ export function ContactForm() {
   })
 
   return (
-    <div className="space-y-4">
-      <form onSubmit={onSubmit} className="surface-panel space-y-4 p-5 sm:p-6" noValidate>
+    <div className="space-y-3">
+      <form
+        onSubmit={onSubmit}
+        className="surface-panel space-y-5 p-5 sm:p-7"
+        noValidate
+      >
+        <div>
+          <p className="font-mono text-[0.65rem] tracking-[0.14em] text-teal uppercase">
+            Message
+          </p>
+          <h3 className="mt-1 font-heading text-lg font-semibold text-ink">
+            Send a message
+          </h3>
+          <p className="mt-1.5 text-sm text-ink-muted">
+            Tell me briefly about your project or research need.
+          </p>
+        </div>
+
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
             <label htmlFor="name" className="text-sm font-medium text-ink">
@@ -94,6 +110,7 @@ export function ContactForm() {
             <Input
               id="name"
               autoComplete="name"
+              className="h-10"
               aria-invalid={Boolean(errors.name)}
               aria-describedby={errors.name ? "name-error" : undefined}
               {...register("name")}
@@ -113,6 +130,7 @@ export function ContactForm() {
               id="email"
               type="email"
               autoComplete="email"
+              className="h-10"
               aria-invalid={Boolean(errors.email)}
               aria-describedby={errors.email ? "email-error" : undefined}
               {...register("email")}
@@ -127,11 +145,13 @@ export function ContactForm() {
 
         <div className="space-y-2">
           <label htmlFor="organization" className="text-sm font-medium text-ink">
-            Organization <span className="font-normal text-ink-muted">(optional)</span>
+            Organization{" "}
+            <span className="font-normal text-ink-muted">(optional)</span>
           </label>
           <Input
             id="organization"
             autoComplete="organization"
+            className="h-10"
             {...register("organization")}
           />
         </div>
@@ -143,6 +163,7 @@ export function ContactForm() {
           <Textarea
             id="message"
             rows={5}
+            className="min-h-28"
             aria-invalid={Boolean(errors.message)}
             aria-describedby={errors.message ? "message-error" : undefined}
             {...register("message")}
@@ -154,29 +175,24 @@ export function ContactForm() {
           ) : null}
         </div>
 
-        <Button type="submit" size="lg" disabled={isSubmitting}>
-          Prepare email
-        </Button>
-      </form>
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <Button type="submit" size="lg" disabled={isSubmitting}>
+            {isSubmitting ? "Opening…" : "Open email draft"}
+          </Button>
+          <p className="text-xs text-ink-muted">
+            Opens your email app to{" "}
+            <a
+              href={`mailto:${preferredEmail.address}`}
+              className="font-medium text-teal underline-offset-2 hover:underline"
+            >
+              {preferredEmail.address}
+            </a>
+          </p>
+        </div>
 
-      <div
-        className="rounded-lg border border-border bg-teal-muted/40 px-4 py-3 text-sm leading-relaxed text-ink-muted"
-        role="note"
-      >
-        <p>
-          No email delivery service is configured. Submitting this form opens your
-          email client with a pre-filled message to{" "}
-          <a
-            href={`mailto:${preferredEmail.address}`}
-            className="font-medium text-teal underline-offset-2 hover:underline"
-          >
-            {preferredEmail.address}
-          </a>
-          . Messages are not sent from this website.
-        </p>
         {preparedMailto ? (
-          <p className="mt-2">
-            If your email client did not open,{" "}
+          <p className="text-sm text-ink-muted" role="status">
+            If nothing opened,{" "}
             <a
               href={preparedMailto}
               className="font-medium text-teal underline-offset-2 hover:underline"
@@ -186,7 +202,7 @@ export function ContactForm() {
             .
           </p>
         ) : null}
-      </div>
+      </form>
     </div>
   )
 }

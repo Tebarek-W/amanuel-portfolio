@@ -11,13 +11,13 @@ export function SiteHeader() {
   const pathname = usePathname()
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/80 bg-paper/90 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-border/80 bg-paper/85 backdrop-blur-md supports-[backdrop-filter]:bg-paper/75">
       <div className="container-page grid h-14 grid-cols-[1fr_auto] items-center gap-3 sm:h-16 md:grid-cols-[1fr_auto_1fr] md:gap-4">
         <Link
           href="/"
           className="group min-w-0 justify-self-start focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
         >
-          <span className="block font-heading text-sm font-semibold tracking-tight text-ink sm:text-base">
+          <span className="block font-heading text-sm font-semibold tracking-tight text-ink transition-colors group-hover:text-teal sm:text-base">
             {siteConfig.name}
           </span>
           <span className="mt-0.5 hidden text-[0.7rem] tracking-[0.08em] text-ink-muted uppercase sm:block">

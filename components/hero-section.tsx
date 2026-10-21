@@ -13,20 +13,28 @@ export function HeroSection() {
 
   return (
     <section className="hero-glow relative overflow-hidden border-b border-border">
-      <div className="container-page grid items-center gap-8 py-10 sm:gap-12 sm:py-16 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:py-24">
+      <div className="container-page grid items-center gap-8 py-12 sm:gap-12 sm:py-16 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:py-24">
         <div className="min-w-0">
-          <motion.p
-            className="text-xs font-medium tracking-[0.04em] text-teal sm:text-sm sm:tracking-[0.06em] sm:uppercase"
+          <motion.div
+            className="flex flex-wrap items-center gap-2"
             initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <span className="sm:hidden">{siteConfig.title}</span>
-            <span className="hidden sm:inline">{heroCopy.identity}</span>
-          </motion.p>
+            <p className="text-xs font-medium tracking-[0.04em] text-teal sm:text-sm sm:tracking-[0.06em] sm:uppercase">
+              <span className="sm:hidden">{siteConfig.title}</span>
+              <span className="hidden sm:inline">{heroCopy.identity}</span>
+            </p>
+            <Badge
+              variant="secondary"
+              className="rounded-md px-2 py-0.5 font-mono text-[0.65rem] tracking-wide text-teal"
+            >
+              7+ years
+            </Badge>
+          </motion.div>
 
           <motion.h1
-            className="mt-3 font-heading text-[1.85rem] font-semibold leading-[1.15] tracking-tight text-ink text-balance sm:mt-4 sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1]"
+            className="mt-4 max-w-[18ch] font-heading text-[1.95rem] font-semibold leading-[1.12] tracking-tight text-ink text-balance sm:mt-5 sm:max-w-xl sm:text-5xl lg:text-[3.35rem] lg:leading-[1.08]"
             initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 0.05 }}
@@ -35,7 +43,7 @@ export function HeroSection() {
           </motion.h1>
 
           <motion.p
-            className="mt-4 text-[0.95rem] leading-relaxed text-ink-muted sm:mt-5 sm:max-w-xl sm:text-lg"
+            className="mt-5 max-w-xl text-[0.98rem] leading-relaxed text-ink-muted sm:text-lg"
             initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 0.1 }}
@@ -43,17 +51,8 @@ export function HeroSection() {
             {heroCopy.supporting}
           </motion.p>
 
-          <motion.p
-            className="mt-3 hidden max-w-xl text-base leading-relaxed text-ink-muted sm:block"
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 0.12 }}
-          >
-            {heroCopy.supportingSecondary}
-          </motion.p>
-
           <motion.div
-            className="mt-7 flex flex-col gap-2.5 sm:mt-8 sm:flex-row sm:flex-wrap sm:gap-3"
+            className="mt-8 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:gap-3"
             initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 0.15 }}
@@ -75,11 +74,11 @@ export function HeroSection() {
             >
               Contact me
             </Button>
-            <DownloadCvButton className="w-full sm:w-auto" />
+            <DownloadCvButton className="w-full sm:w-auto" variant="ghost" />
           </motion.div>
 
           <motion.ul
-            className="mt-6 flex flex-wrap gap-1.5 sm:mt-8 sm:gap-2"
+            className="mt-8 flex flex-wrap gap-2 border-t border-border/70 pt-6"
             aria-label="Core expertise"
             initial={prefersReducedMotion ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -89,7 +88,7 @@ export function HeroSection() {
               <li key={label}>
                 <Badge
                   variant="outline"
-                  className="rounded-md px-2 py-0.5 text-[0.7rem] sm:px-2.5 sm:py-1 sm:text-xs"
+                  className="rounded-md border-border/80 bg-surface-elevated/70 px-2.5 py-1 text-[0.7rem] sm:text-xs"
                 >
                   {label}
                 </Badge>

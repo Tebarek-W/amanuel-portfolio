@@ -44,11 +44,22 @@ async function LatestBlogPosts() {
 
   if (posts.length === 0) {
     return (
-      <div className="surface-panel mt-10 p-8 text-center">
-        <p className="text-ink">No published posts yet.</p>
-        <p className="mt-2 text-sm text-ink-muted">
-          Check back soon for articles and achievements.
+      <div className="surface-panel mt-10 px-6 py-10 text-center sm:px-10">
+        <p className="font-heading text-lg font-semibold text-ink">
+          Blog coming soon
         </p>
+        <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink-muted">
+          Articles and achievements will appear here after the first posts are
+          published.
+        </p>
+        <Button
+          variant="outline"
+          className="mt-5"
+          nativeButton={false}
+          render={<Link href="/blog" />}
+        >
+          Visit blog page
+        </Button>
       </div>
     )
   }

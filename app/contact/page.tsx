@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="bg-paper">
+    <div className="hero-glow min-h-[70vh]">
       <ContactSection />
     </div>
   )
