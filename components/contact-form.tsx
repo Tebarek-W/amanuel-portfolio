@@ -1,92 +1,55 @@
 "use client"
 
-import { useState } from "react"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { getPreferredEmail } from "@/data/site"
+import { useActionState, useEffect, useRef, useState } from "react"
+import {
+  sendContactMessage,
+  type ContactActionState,
+} from "@/app/contact/actions"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 
-const contactSchema = z.object({
-  name: z.string().trim().min(2, "Please enter your name."),
-  email: z.email({ error: "Please enter a valid email address." }),
-  organization: z.string().trim().optional(),
-  message: z
-    .string()
-    .trim()
-    .min(20, "Please include a short message (at least 20 characters)."),
-})
-
-type ContactValues = z.infer<typeof contactSchema>
-
-function validate(values: ContactValues) {
-  const result = contactSchema.safeParse(values)
-  if (result.success) return {}
-  const fieldErrors: Partial<Record<keyof ContactValues, string>> = {}
-  for (const issue of result.error.issues) {
-    const key = issue.path[0]
-    if (typeof key === "string" && !(key in fieldErrors)) {
-      fieldErrors[key as keyof ContactValues] = issue.message
-    }
-  }
-  return fieldErrors
-}
+const initialState: ContactActionState = {}
 
 export function ContactForm() {
-  const preferredEmail = getPreferredEmail()
-  const [preparedMailto, setPreparedMailto] = useState<string | null>(null)
-  const {
-    register,
-    handleSubmit,
-    setError,
-    formState: { errors, isSubmitting },
-    reset,
-  } = useForm<ContactValues>({
-    defaultValues: {
-      name: "",
-      email: "",
-      organization: "",
-      message: "",
-    },
-  })
+  const formRef = useRef<HTMLFormElement>(null)
+  const [showSuccess, setShowSuccess] = useState(false)
+  const [state, formAction, isPending] = useActionState(
+    sendContactMessage,
+    initialState
+  )
 
-  const onSubmit = handleSubmit((values) => {
-    const fieldErrors = validate(values)
-    const keys = Object.keys(fieldErrors) as (keyof ContactValues)[]
-    if (keys.length > 0) {
-      for (const key of keys) {
-        const message = fieldErrors[key]
-        if (message) setError(key, { message })
-      }
-      return
+  useEffect(() => {
+    if (state.ok) {
+      formRef.current?.reset()
+      setShowSuccess(true)
     }
+  }, [state.ok])
 
-    const subject = encodeURIComponent(
-      `Portfolio inquiry from ${values.name}${
-        values.organization ? ` (${values.organization})` : ""
-      }`
+  if (showSuccess) {
+    return (
+      <div className="surface-panel space-y-3 p-5 sm:p-7" role="status">
+        <p className="font-mono text-[0.65rem] tracking-[0.14em] text-teal uppercase">
+          Sent
+        </p>
+        <h3 className="font-heading text-lg font-semibold text-ink">
+          Message sent
+        </h3>
+        <p className="text-sm leading-relaxed text-ink-muted">
+          Thanks for reaching out. I will get back to you as soon as I can.
+        </p>
+        <Button type="button" variant="outline" onClick={() => setShowSuccess(false)}>
+          Send another message
+        </Button>
+      </div>
     )
-    const body = encodeURIComponent(
-      `${values.message}\n\n—\n${values.name}\n${values.email}${
-        values.organization ? `\n${values.organization}` : ""
-      }`
-    )
-    const href = `mailto:${preferredEmail.address}?subject=${subject}&body=${body}`
-    setPreparedMailto(href)
-    const anchor = document.createElement("a")
-    anchor.href = href
-    anchor.rel = "noopener noreferrer"
-    document.body.appendChild(anchor)
-    anchor.click()
-    anchor.remove()
-    reset()
-  })
+  }
 
   return (
     <div className="space-y-3">
       <form
-        onSubmit={onSubmit}
+        ref={formRef}
+        action={formAction}
         className="surface-panel space-y-5 p-5 sm:p-7"
         noValidate
       >
@@ -109,15 +72,18 @@ export function ContactForm() {
             </label>
             <Input
               id="name"
+              name="name"
               autoComplete="name"
               className="h-10"
-              aria-invalid={Boolean(errors.name)}
-              aria-describedby={errors.name ? "name-error" : undefined}
-              {...register("name")}
+              required
+              aria-invalid={Boolean(state.fieldErrors?.name)}
+              aria-describedby={
+                state.fieldErrors?.name ? "name-error" : undefined
+              }
             />
-            {errors.name ? (
+            {state.fieldErrors?.name ? (
               <p id="name-error" className="text-xs text-destructive" role="alert">
-                {errors.name.message}
+                {state.fieldErrors.name}
               </p>
             ) : null}
           </div>
@@ -128,16 +94,23 @@ export function ContactForm() {
             </label>
             <Input
               id="email"
+              name="email"
               type="email"
               autoComplete="email"
               className="h-10"
-              aria-invalid={Boolean(errors.email)}
-              aria-describedby={errors.email ? "email-error" : undefined}
-              {...register("email")}
+              required
+              aria-invalid={Boolean(state.fieldErrors?.email)}
+              aria-describedby={
+                state.fieldErrors?.email ? "email-error" : undefined
+              }
             />
-            {errors.email ? (
-              <p id="email-error" className="text-xs text-destructive" role="alert">
-                {errors.email.message}
+            {state.fieldErrors?.email ? (
+              <p
+                id="email-error"
+                className="text-xs text-destructive"
+                role="alert"
+              >
+                {state.fieldErrors.email}
               </p>
             ) : null}
           </div>
@@ -150,9 +123,9 @@ export function ContactForm() {
           </label>
           <Input
             id="organization"
+            name="organization"
             autoComplete="organization"
             className="h-10"
-            {...register("organization")}
           />
         </div>
 
@@ -162,46 +135,35 @@ export function ContactForm() {
           </label>
           <Textarea
             id="message"
+            name="message"
             rows={5}
             className="min-h-28"
-            aria-invalid={Boolean(errors.message)}
-            aria-describedby={errors.message ? "message-error" : undefined}
-            {...register("message")}
+            required
+            aria-invalid={Boolean(state.fieldErrors?.message)}
+            aria-describedby={
+              state.fieldErrors?.message ? "message-error" : undefined
+            }
           />
-          {errors.message ? (
-            <p id="message-error" className="text-xs text-destructive" role="alert">
-              {errors.message.message}
+          {state.fieldErrors?.message ? (
+            <p
+              id="message-error"
+              className="text-xs text-destructive"
+              role="alert"
+            >
+              {state.fieldErrors.message}
             </p>
           ) : null}
         </div>
 
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <Button type="submit" size="lg" disabled={isSubmitting}>
-            {isSubmitting ? "Opening…" : "Open email draft"}
-          </Button>
-          <p className="text-xs text-ink-muted">
-            Opens your email app to{" "}
-            <a
-              href={`mailto:${preferredEmail.address}`}
-              className="font-medium text-teal underline-offset-2 hover:underline"
-            >
-              {preferredEmail.address}
-            </a>
-          </p>
-        </div>
-
-        {preparedMailto ? (
-          <p className="text-sm text-ink-muted" role="status">
-            If nothing opened,{" "}
-            <a
-              href={preparedMailto}
-              className="font-medium text-teal underline-offset-2 hover:underline"
-            >
-              use this email link
-            </a>
-            .
+        {state.error ? (
+          <p className="text-sm text-destructive" role="alert">
+            {state.error}
           </p>
         ) : null}
+
+        <Button type="submit" size="lg" disabled={isPending}>
+          {isPending ? "Sending…" : "Send message"}
+        </Button>
       </form>
     </div>
   )

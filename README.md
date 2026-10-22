@@ -7,7 +7,8 @@ Research-focused portfolio site for **Amanuel Tadele Dabarsho**, Research Specia
 - Next.js 16 (App Router) + React 19 + TypeScript
 - Tailwind CSS v4 + shadcn/ui (Base UI / Nova)
 - Neon Postgres + Drizzle ORM (blog / admin)
-- Motion (`motion/react`), Lucide React, React Hook Form, Zod
+- Formspree (contact form email)
+- Motion (`motion/react`), Lucide React, Zod
 - Playwright smoke tests
 
 ## Local development
@@ -39,6 +40,7 @@ Copy `.env.example` to `.env.local`:
 | `DATABASE_URL` | Neon Postgres connection string |
 | `ADMIN_PASSWORD` | Password for `/admin/login` |
 | `SESSION_SECRET` | Session cookie signing secret (16+ chars) |
+| `FORMSPREE_FORM_ID` | Formspree form id or full endpoint URL |
 
 ## Blog & admin
 
@@ -68,12 +70,17 @@ Blog posts are stored in Postgres (not in `data/`).
 
 ## Contact form
 
-The form validates client-side and opens a `mailto:` draft. No backend email service is configured.
+Messages are sent with [Formspree](https://formspree.io) via a Server Action (no mail client popup, no domain DNS).
+
+1. Create a free Formspree account and a new form.
+2. Copy the form id from the endpoint (`https://formspree.io/f/xxxxxx` → `xxxxxx`).
+3. Set `FORMSPREE_FORM_ID` in `.env.local` / Vercel (id or full URL both work).
+4. Confirm your email in Formspree so submissions reach your inbox.
 
 ## Deploy on Vercel
 
 1. Push the repository to GitHub/GitLab/Bitbucket.
 2. Import the project in [Vercel](https://vercel.com/new).
-3. Set env vars: `NEXT_PUBLIC_SITE_URL`, `DATABASE_URL`, `ADMIN_PASSWORD`, `SESSION_SECRET`.
+3. Set env vars: `NEXT_PUBLIC_SITE_URL`, `DATABASE_URL`, `ADMIN_PASSWORD`, `SESSION_SECRET`, `FORMSPREE_FORM_ID`.
 4. Run `npm run db:push` against the production database.
 5. After the domain is live, confirm `NEXT_PUBLIC_SITE_URL` matches it, then submit `/sitemap.xml` in Google Search Console.
