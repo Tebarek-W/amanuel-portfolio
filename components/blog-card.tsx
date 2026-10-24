@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils"
 type BlogCardProps = {
   post: Post
   className?: string
+  /** Eager-load cover when this card is likely LCP (first above-the-fold card). */
+  priority?: boolean
 }
 
 function formatDate(value: Date | null) {
@@ -18,7 +20,7 @@ function formatDate(value: Date | null) {
   }).format(value)
 }
 
-export function BlogCard({ post, className }: BlogCardProps) {
+export function BlogCard({ post, className, priority = false }: BlogCardProps) {
   return (
     <article className={cn("surface-panel-interactive flex h-full flex-col overflow-hidden", className)}>
       {post.coverImageUrl ? (
@@ -30,6 +32,7 @@ export function BlogCard({ post, className }: BlogCardProps) {
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 33vw"
             unoptimized
+            priority={priority}
           />
         </Link>
       ) : null}

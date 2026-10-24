@@ -67,8 +67,12 @@ export function BlogFilters({ posts }: BlogFiltersProps) {
 
       {filtered.length > 0 ? (
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {filtered.map((post) => (
-            <BlogCard key={post.id} post={post} />
+          {filtered.map((post, index) => (
+            <BlogCard
+              key={post.id}
+              post={post}
+              priority={index === 0 && Boolean(post.coverImageUrl)}
+            />
           ))}
         </div>
       ) : (

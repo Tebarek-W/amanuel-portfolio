@@ -68,8 +68,12 @@ async function LatestBlogPosts() {
 
   return (
     <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-      {posts.map((post) => (
-        <BlogCard key={post.id} post={post} />
+      {posts.map((post, index) => (
+        <BlogCard
+          key={post.id}
+          post={post}
+          priority={index === 0 && Boolean(post.coverImageUrl)}
+        />
       ))}
     </div>
   )
