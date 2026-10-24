@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { CertificateCard } from "@/components/certificate-card"
 import { ContactSection } from "@/components/contact-section"
 import { ExpertiseCard } from "@/components/expertise-card"
 import { HeroSection } from "@/components/hero-section"
@@ -10,7 +9,6 @@ import { SectionHeading } from "@/components/section-heading"
 import { ServiceCard } from "@/components/service-card"
 import { WorkflowDiagram } from "@/components/workflow-diagram"
 import { Button } from "@/components/ui/button"
-import { certificates } from "@/data/certificates"
 import { education } from "@/data/education"
 import { getFeaturedProjects } from "@/data/projects"
 import { publications } from "@/data/publications"
@@ -19,7 +17,6 @@ import { expertiseAreas } from "@/data/skills"
 
 export default function HomePage() {
   const featuredProjects = getFeaturedProjects().slice(0, 6)
-  const previewCertificates = certificates.slice(0, 4)
 
   return (
     <>
@@ -119,70 +116,44 @@ export default function HomePage() {
       </section>
 
       <section
-        id="credentials"
+        id="education"
         className="section-y"
-        aria-labelledby="credentials-heading"
+        aria-labelledby="education-heading"
       >
-        <div className="container-page grid gap-12 lg:grid-cols-2">
-          <div>
-            <SectionHeading
-              id="credentials-heading"
-              eyebrow="Education"
-              title="Academic foundation"
-            />
-            <ul className="mt-8 space-y-4">
-              {education.map((item) => (
-                <li key={item.id} className="surface-panel p-5">
-                  <h3 className="font-heading text-lg font-semibold text-ink">
-                    {item.degree}
-                  </h3>
-                  <p className="mt-1 text-sm text-ink-muted">
-                    {item.institution} · {item.dateLabel}
+        <div className="container-page max-w-3xl">
+          <SectionHeading
+            id="education-heading"
+            eyebrow="Education"
+            title="Academic foundation"
+          />
+          <ul className="mt-8 space-y-4">
+            {education.map((item) => (
+              <li key={item.id} className="surface-panel p-5">
+                <h3 className="font-heading text-lg font-semibold text-ink">
+                  {item.degree}
+                </h3>
+                <p className="mt-1 text-sm text-ink-muted">
+                  {item.institution} · {item.dateLabel}
+                </p>
+                {item.distinction ? (
+                  <p className="mt-2 text-sm text-teal">{item.distinction}</p>
+                ) : null}
+                {item.thesisOrEssay ? (
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                    {item.thesisOrEssay}
                   </p>
-                  {item.distinction ? (
-                    <p className="mt-2 text-sm text-teal">{item.distinction}</p>
-                  ) : null}
-                  {item.thesisOrEssay ? (
-                    <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                      {item.thesisOrEssay}
-                    </p>
-                  ) : null}
-                </li>
-              ))}
-            </ul>
-            <Button
-              variant="outline"
-              className="mt-6"
-              nativeButton={false}
-              render={<Link href="/about#education-heading" />}
-            >
-              About &amp; academic credentials
-            </Button>
-          </div>
-
-          <div>
-            <SectionHeading
-              eyebrow="Certificates"
-              title="Professional training"
-              description="Selected certificates relevant to field research, reproducible workflows, survey methods, data science, and GIS."
-            />
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {previewCertificates.map((certificate) => (
-                <CertificateCard
-                  key={certificate.id}
-                  certificate={certificate}
-                />
-              ))}
-            </div>
-            <Button
-              variant="outline"
-              className="mt-6"
-              nativeButton={false}
-              render={<Link href="/certificates" />}
-            >
-              View all certificates
-            </Button>
-          </div>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+          <Button
+            variant="outline"
+            className="mt-6"
+            nativeButton={false}
+            render={<Link href="/about#education-heading" />}
+          >
+            About &amp; academic credentials
+          </Button>
         </div>
       </section>
 

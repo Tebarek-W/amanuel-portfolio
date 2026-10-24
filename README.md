@@ -61,7 +61,6 @@ Typed content lives under `data/`:
 | `data/projects.ts` | Project cards + detail pages |
 | `data/services.ts` | Professional services |
 | `data/publications.ts` | Publications / research data |
-| `data/certificates.ts` | Certificates |
 | `data/skills.ts` | Skills, expertise, workflow |
 | `data/education.ts` | Education |
 | `data/experience.ts` | Roles and experience letters |

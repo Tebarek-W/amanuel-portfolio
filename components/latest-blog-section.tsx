@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { connection } from "next/server"
 import { Suspense } from "react"
 import { BlogCard } from "@/components/blog-card"
 import { SectionHeading } from "@/components/section-heading"
@@ -40,6 +41,7 @@ export function LatestBlogSection() {
 }
 
 async function LatestBlogPosts() {
+  await connection()
   const posts = (await getPublishedPosts("all")).slice(0, 3)
 
   if (posts.length === 0) {

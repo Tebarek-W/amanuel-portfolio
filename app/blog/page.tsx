@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { connection } from "next/server"
 import { Suspense } from "react"
 import { BlogFilters } from "@/components/blog-filters"
 import { SectionHeading } from "@/components/section-heading"
@@ -36,6 +37,8 @@ export default function BlogPage() {
 }
 
 async function BlogList() {
+  // Defer Neon reads until a real request — avoids prerender hanging-fetch noise.
+  await connection()
   const posts = await getPublishedPosts("all")
 
   if (posts.length === 0) {

@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { connection } from "next/server"
 import { Suspense } from "react"
 import { MarkdownContent } from "@/components/markdown-content"
 import { Badge } from "@/components/ui/badge"
@@ -69,6 +70,7 @@ async function BlogPostContent({
 }: {
   params: BlogPostPageProps["params"]
 }) {
+  await connection()
   const { slug } = await params
   const post = await getPublishedPostBySlug(slug)
   if (!post) notFound()

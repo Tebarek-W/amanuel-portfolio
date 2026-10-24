@@ -12,32 +12,32 @@ export function slugify(input: string) {
     .slice(0, 180)
 }
 
-function isTransientDbError(error: unknown) {
-  const message =
-    error instanceof Error
-      ? `${error.message} ${error.cause instanceof Error ? error.cause.message : ""}`
-      : String(error)
-  return /fetch failed|ECONNRESET|ETIMEDOUT|network|connecting to database/i.test(
-    message
+function errorText(error: unknown) {
+  if (!(error instanceof Error)) return String(error)
+  const digest =
+    typeof (error as Error & { digest?: unknown }).digest === "string"
+      ? (error as Error & { digest: string }).digest
+      : ""
+  const cause = error.cause instanceof Error ? error.cause.message : ""
+  return `${error.message} ${cause} ${digest}`
+}
+
+/** Next aborts in-flight fetches when a prerender window ends — do not retry those. */
+function isPrerenderAbort(error: unknown) {
+  return /HANGING_PROMISE_REJECTION|prerendering, fetch\(\) rejects/i.test(
+    errorText(error)
   )
 }
 
 async function safeQuery<T>(fallback: T, run: () => Promise<T>): Promise<T> {
-  const attempts = 3
-  for (let attempt = 1; attempt <= attempts; attempt += 1) {
-    try {
-      return await run()
-    } catch (error) {
-      const retry = attempt < attempts && isTransientDbError(error)
-      console.error(
-        `[posts] database query failed (attempt ${attempt}/${attempts}):`,
-        error
-      )
-      if (!retry) return fallback
-      await new Promise((resolve) => setTimeout(resolve, 250 * attempt))
+  try {
+    return await run()
+  } catch (error) {
+    if (!isPrerenderAbort(error)) {
+      console.error("[posts] database query failed:", error)
     }
+    return fallback
   }
-  return fallback
 }
 
 export async function getPublishedPosts(type?: PostType | "all") {

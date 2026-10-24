@@ -7,7 +7,6 @@ const routes = [
   "/projects/national-survey-persons-with-disabilities",
   "/services",
   "/publications",
-  "/certificates",
   "/blog",
   "/contact",
   "/admin/login",

@@ -70,7 +70,6 @@ export const siteConfig = {
     { label: "Projects", href: "/projects" },
     { label: "Services", href: "/services" },
     { label: "Publications", href: "/publications" },
-    { label: "Certificates", href: "/certificates" },
     { label: "Blog", href: "/blog" },
   ] as const,
 } as const
