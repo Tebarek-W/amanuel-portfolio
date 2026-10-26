@@ -42,34 +42,36 @@ function sleep(ms: number) {
   })
 }
 
+const TRANSIENT_RETRY_DELAYS_MS = [1500, 2500] as const
+
+async function withDbRetry<T>(run: () => Promise<T>): Promise<T> {
+  let lastError: unknown
+  const attempts = TRANSIENT_RETRY_DELAYS_MS.length + 1
+
+  for (let attempt = 0; attempt < attempts; attempt += 1) {
+    try {
+      return await run()
+    } catch (error) {
+      lastError = error
+      if (isPrerenderAbort(error)) throw error
+      if (!isTransientDbError(error) || attempt === attempts - 1) throw error
+      await sleep(TRANSIENT_RETRY_DELAYS_MS[attempt] ?? 2000)
+    }
+  }
+
+  throw lastError
+}
+
 async function safeQuery<T>(fallback: T, run: () => Promise<T>): Promise<T> {
   try {
-    return await run()
+    return await withDbRetry(run)
   } catch (error) {
-    if (isPrerenderAbort(error)) {
-      return fallback
+    if (!isPrerenderAbort(error)) {
+      console.warn(
+        "[posts] database unavailable. Showing empty posts.",
+        error instanceof Error ? error.message : error
+      )
     }
-
-    // Neon idle computes often fail the first HTTP query while waking; one retry usually works.
-    if (isTransientDbError(error)) {
-      try {
-        await sleep(1500)
-        return await run()
-      } catch (retryError) {
-        if (!isPrerenderAbort(retryError)) {
-          console.warn(
-            "[posts] database unavailable after retry (Neon may still be waking). Showing empty posts.",
-            retryError instanceof Error ? retryError.message : retryError
-          )
-        }
-        return fallback
-      }
-    }
-
-    console.warn(
-      "[posts] database query failed:",
-      error instanceof Error ? error.message : error
-    )
     return fallback
   }
 }
@@ -107,17 +109,23 @@ export async function getPublishedPostBySlug(slug: string) {
 }
 
 export async function getAllPostsAdmin() {
-  const db = getDb()
-  return db
-    .select()
-    .from(posts)
-    .orderBy(desc(posts.updatedAt), desc(posts.createdAt))
+  if (!isDatabaseConfigured()) return [] as Post[]
+  return withDbRetry(async () => {
+    const db = getDb()
+    return db
+      .select()
+      .from(posts)
+      .orderBy(desc(posts.updatedAt), desc(posts.createdAt))
+  })
 }
 
 export async function getPostById(id: string) {
-  const db = getDb()
-  const rows = await db.select().from(posts).where(eq(posts.id, id)).limit(1)
-  return rows[0] ?? null
+  if (!isDatabaseConfigured()) return null
+  return withDbRetry(async () => {
+    const db = getDb()
+    const rows = await db.select().from(posts).where(eq(posts.id, id)).limit(1)
+    return rows[0] ?? null
+  })
 }
 
 export async function ensureUniqueSlug(base: string, excludeId?: string) {

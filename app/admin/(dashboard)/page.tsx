@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { connection } from "next/server"
 import { Suspense } from "react"
 import { AdminPostList } from "@/components/admin-post-list"
 import { SectionHeading } from "@/components/section-heading"
@@ -33,8 +34,28 @@ export default function AdminDashboardPage() {
 }
 
 async function AdminPostListLoader() {
-  const posts = isDatabaseConfigured() ? await getAllPostsAdmin() : []
-  return <AdminPostList posts={posts} />
+  await connection()
+
+  if (!isDatabaseConfigured()) {
+    return <AdminPostList posts={[]} />
+  }
+
+  try {
+    const posts = await getAllPostsAdmin()
+    return <AdminPostList posts={posts} />
+  } catch {
+    return (
+      <div className="surface-panel p-6 sm:p-8">
+        <p className="font-heading text-lg font-semibold text-ink">
+          Database temporarily unavailable
+        </p>
+        <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-muted">
+          Could not reach Neon (often while the free-tier compute wakes from
+          idle). Wait a few seconds and refresh this page.
+        </p>
+      </div>
+    )
+  }
 }
 
 function AdminListFallback() {
