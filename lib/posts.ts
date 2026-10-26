@@ -29,13 +29,47 @@ function isPrerenderAbort(error: unknown) {
   )
 }
 
+/** Neon scale-to-zero / brief network blips while compute wakes. */
+function isTransientDbError(error: unknown) {
+  return /fetch failed|Error connecting to database|ECONNRESET|ETIMEDOUT|UND_ERR_|socket|network/i.test(
+    errorText(error)
+  )
+}
+
+function sleep(ms: number) {
+  return new Promise<void>((resolve) => {
+    setTimeout(resolve, ms)
+  })
+}
+
 async function safeQuery<T>(fallback: T, run: () => Promise<T>): Promise<T> {
   try {
     return await run()
   } catch (error) {
-    if (!isPrerenderAbort(error)) {
-      console.error("[posts] database query failed:", error)
+    if (isPrerenderAbort(error)) {
+      return fallback
     }
+
+    // Neon idle computes often fail the first HTTP query while waking; one retry usually works.
+    if (isTransientDbError(error)) {
+      try {
+        await sleep(1500)
+        return await run()
+      } catch (retryError) {
+        if (!isPrerenderAbort(retryError)) {
+          console.warn(
+            "[posts] database unavailable after retry (Neon may still be waking). Showing empty posts.",
+            retryError instanceof Error ? retryError.message : retryError
+          )
+        }
+        return fallback
+      }
+    }
+
+    console.warn(
+      "[posts] database query failed:",
+      error instanceof Error ? error.message : error
+    )
     return fallback
   }
 }

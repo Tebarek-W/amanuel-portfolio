@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { ExternalLink } from "lucide-react"
-import { DownloadCvButton } from "@/components/download-cv-button"
 import { SectionHeading } from "@/components/section-heading"
 import { Button } from "@/components/ui/button"
 import { education } from "@/data/education"
@@ -108,9 +107,12 @@ function ProfileCard({
             </li>
           ))}
         </ul>
-        <div className="flex flex-col gap-2 border-t border-border/70 pt-4">
-          <DownloadCvButton className="w-full" />
-          <Button nativeButton={false} render={<Link href="/contact" />}>
+        <div className="border-t border-border/70 pt-4">
+          <Button
+            className="w-full"
+            nativeButton={false}
+            render={<Link href="/contact" />}
+          >
             Let&apos;s Connect
           </Button>
         </div>

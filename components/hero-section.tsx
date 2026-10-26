@@ -4,7 +4,6 @@ import Link from "next/link"
 import { motion, useReducedMotion } from "motion/react"
 import { heroCopy, siteConfig } from "@/data/site"
 import { DataMotif } from "@/components/data-motif"
-import { DownloadCvButton } from "@/components/download-cv-button"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
@@ -74,7 +73,6 @@ export function HeroSection() {
             >
               Contact me
             </Button>
-            <DownloadCvButton className="w-full sm:w-auto" variant="ghost" />
           </motion.div>
 
           <motion.ul

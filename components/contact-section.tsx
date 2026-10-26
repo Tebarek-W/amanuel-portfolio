@@ -5,7 +5,6 @@ import {
   siteConfig,
 } from "@/data/site"
 import { ContactForm } from "@/components/contact-form"
-import { DownloadCvButton } from "@/components/download-cv-button"
 import { SectionHeading } from "@/components/section-heading"
 import { SocialLinks } from "@/components/social-links"
 import { Button } from "@/components/ui/button"
@@ -80,20 +79,15 @@ export function ContactSection({
             </div>
 
             {compact ? (
-              <div className="flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
-                <Button
-                  nativeButton={false}
-                  render={<Link href="/contact" />}
-                  size="lg"
-                  className="w-full sm:w-auto"
-                >
-                  Go to contact page
-                </Button>
-                <DownloadCvButton size="lg" className="w-full sm:w-auto" />
-              </div>
-            ) : (
-              <DownloadCvButton size="lg" className="w-full sm:w-auto" />
-            )}
+              <Button
+                nativeButton={false}
+                render={<Link href="/contact" />}
+                size="lg"
+                className="w-full sm:w-auto"
+              >
+                Go to contact page
+              </Button>
+            ) : null}
           </div>
 
           {showForm ? <ContactForm /> : null}

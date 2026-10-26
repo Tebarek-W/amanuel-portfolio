@@ -4,7 +4,6 @@ import Link from "next/link"
 import { useState } from "react"
 import { Menu } from "lucide-react"
 import { siteConfig } from "@/data/site"
-import { DownloadCvButton } from "@/components/download-cv-button"
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
@@ -56,8 +55,7 @@ export function MobileNavigation() {
               {item.label}
             </SheetClose>
           ))}
-          <div className="mt-3 space-y-2">
-            <DownloadCvButton className="w-full" />
+          <div className="mt-3">
             <SheetClose
               nativeButton={false}
               render={

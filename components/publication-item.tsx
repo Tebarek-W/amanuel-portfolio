@@ -79,7 +79,6 @@ export function PublicationItem({
       <h3 className="font-heading text-base font-semibold tracking-tight text-ink text-balance sm:text-lg">
         {publication.title}
       </h3>
-      {authors}
       {meta}
       {doi}
       {note}

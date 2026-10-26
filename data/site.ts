@@ -29,11 +29,6 @@ export const siteConfig = {
     label: "Public Google Site",
     href: "https://sites.google.com/view/amanuel-td",
   },
-  cvDownload: {
-    label: "Download CV",
-    href: "/Amanuel-Tadele-Dabarsho-CV.docx",
-    fileName: "Amanuel-Tadele-Dabarsho-CV.docx",
-  },
   employers: [
     {
       name: "FDRE Policy Studies Institute (PSI)",
