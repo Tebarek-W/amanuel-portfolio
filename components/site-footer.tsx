@@ -22,14 +22,6 @@ export function SiteFooter() {
               Research specialist focused on research data management, digital
               survey systems, statistical analysis, and evidence for decision-making.
             </p>
-            <a
-              href={siteConfig.personalSite.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 inline-block text-sm text-primary-foreground/80 underline-offset-2 hover:text-primary-foreground hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-            >
-              Public Google Site
-            </a>
           </div>
 
           <div>

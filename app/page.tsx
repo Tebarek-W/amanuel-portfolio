@@ -135,14 +135,6 @@ export default function HomePage() {
                 <p className="mt-1 text-sm text-ink-muted">
                   {item.institution} · {item.dateLabel}
                 </p>
-                {item.distinction ? (
-                  <p className="mt-2 text-sm text-teal">{item.distinction}</p>
-                ) : null}
-                {item.thesisOrEssay ? (
-                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                    {item.thesisOrEssay}
-                  </p>
-                ) : null}
               </li>
             ))}
           </ul>
@@ -185,6 +177,7 @@ export default function HomePage() {
               <PublicationItem
                 key={publication.id}
                 publication={publication}
+                variant="card"
               />
             ))}
           </div>

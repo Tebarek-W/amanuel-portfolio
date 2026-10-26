@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { ExternalLink } from "lucide-react"
-import { CredentialLightbox } from "@/components/credential-lightbox"
 import { DownloadCvButton } from "@/components/download-cv-button"
 import { SectionHeading } from "@/components/section-heading"
 import { Button } from "@/components/ui/button"
@@ -129,13 +128,8 @@ export default function AboutPage() {
             <div className="min-w-0">
               <SectionHeading
                 eyebrow="About"
-                title="Bridging research design, field data, and analysis-ready evidence"
-                description={aboutCopy.summary}
+                title={siteConfig.roleLine}
               />
-
-              <p className="mt-4 font-mono text-xs leading-relaxed text-teal sm:text-sm">
-                {siteConfig.roleLine}
-              </p>
 
               <ProfileCard
                 className="mx-auto mt-8 w-full max-w-[14rem] sm:max-w-[16rem] lg:hidden"
@@ -144,22 +138,9 @@ export default function AboutPage() {
               />
 
               <div className="mt-8 space-y-5 text-[0.95rem] leading-relaxed text-ink-muted sm:mt-10 sm:space-y-6 sm:text-base">
-                <p>{aboutCopy.approach}</p>
-                {aboutCopy.googleSiteParagraphs.map((paragraph) => (
-                  <p key={paragraph.slice(0, 48)}>{paragraph}</p>
-                ))}
-                <p>{aboutCopy.focus}</p>
-                <p>
-                  Public profile:{" "}
-                  <a
-                    href={siteConfig.personalSite.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="break-all font-medium text-teal underline-offset-2 hover:underline sm:break-normal"
-                  >
-                    sites.google.com/view/amanuel-td
-                  </a>
-                </p>
+                <p>{aboutCopy.summary}</p>
+                <p>{aboutCopy.organizations}</p>
+                <p>{aboutCopy.priorRoles}</p>
               </div>
 
               <div className="mt-8 sm:mt-10">
@@ -168,9 +149,9 @@ export default function AboutPage() {
                   size="lg"
                   className="w-full sm:w-auto"
                   nativeButton={false}
-                  render={<Link href="/experience" />}
+                  render={<Link href="/projects" />}
                 >
-                  View full experience
+                  View projects
                 </Button>
               </div>
             </div>
@@ -190,58 +171,26 @@ export default function AboutPage() {
             eyebrow="Education"
             title="Academic credentials"
           />
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
+          <ul className="mt-8 space-y-4">
             {education.map((item) => (
-              <article
+              <li
                 key={item.id}
-                className="surface-panel flex h-full flex-col justify-between p-5"
+                className="surface-panel flex flex-col gap-1 p-5 sm:flex-row sm:items-start sm:justify-between sm:gap-6"
               >
-                <div>
+                <div className="min-w-0">
                   <h3 className="font-heading text-lg font-semibold text-ink">
                     {item.degree}
                   </h3>
                   <p className="mt-1 text-sm text-ink-muted">
-                    {item.institution} · {item.dateLabel}
+                    {item.institution}
                   </p>
-                  {item.distinction ? (
-                    <p className="mt-2 text-sm text-teal">{item.distinction}</p>
-                  ) : null}
-                  {item.statusNote ? (
-                    <p className="mt-1 text-xs text-ink-muted">
-                      {item.statusNote}
-                    </p>
-                  ) : null}
-                  {item.thesisOrEssay ? (
-                    <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-                      {item.thesisOrEssay}
-                    </p>
-                  ) : null}
                 </div>
-
-                {item.credentialImage ? (
-                  <div className="mt-5 border-t border-border pt-4">
-                    <div className="mb-2.5 flex items-center justify-between gap-2">
-                      <p className="text-xs font-semibold tracking-[0.12em] text-ink uppercase">
-                        Official Diploma Scan
-                      </p>
-                      {item.credentialSerial ? (
-                        <span className="font-mono text-xs text-teal">
-                          {item.credentialSerial}
-                        </span>
-                      ) : null}
-                    </div>
-                    <CredentialLightbox
-                      src={item.credentialImage}
-                      alt={item.credentialTitle ?? item.degree}
-                      title={item.credentialTitle ?? item.degree}
-                      subtitle={`${item.institution} · ${item.dateLabel}`}
-                      credentialId={item.credentialSerial}
-                    />
-                  </div>
-                ) : null}
-              </article>
+                <p className="shrink-0 font-mono text-sm text-ink-muted sm:pt-1 sm:text-right">
+                  {item.dateLabel}
+                </p>
+              </li>
             ))}
-          </div>
+          </ul>
         </section>
 
         <section className="mt-12 sm:mt-16" aria-labelledby="skills-heading">

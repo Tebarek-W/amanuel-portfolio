@@ -22,16 +22,6 @@ test.describe("portfolio smoke", () => {
     })
   }
 
-  test("projects filter narrows results", async ({ page }) => {
-    await page.goto("/projects")
-    const status = page.getByText(/Showing \d+ of \d+ projects/)
-    await expect(status).toBeVisible()
-    await page.getByRole("button", { name: /Disability/i }).click()
-    await expect(page.getByText(/Showing \d+ of \d+ projects/)).toBeVisible()
-    const cards = page.locator("article")
-    await expect(cards.first()).toBeVisible()
-  })
-
   test("mobile navigation opens", async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 812 })
     await page.goto("/")

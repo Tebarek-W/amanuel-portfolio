@@ -21,7 +21,7 @@ export function SiteHeader() {
             {siteConfig.name}
           </span>
           <span className="mt-0.5 hidden text-[0.7rem] tracking-[0.08em] text-ink-muted uppercase sm:block">
-            Data Manager · Survey Programmer
+            Research, data science and digital data system
           </span>
         </Link>
 

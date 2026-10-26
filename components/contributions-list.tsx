@@ -2,42 +2,16 @@ import Link from "next/link"
 import { ExternalLink } from "lucide-react"
 import {
   contributionYears,
-  contributionsListUrl,
   getContributionsByYear,
 } from "@/data/contributions"
 
 /**
- * Year-grouped mirror of the Google Site contributions page.
- * Each row links to an in-site project page and/or the original "Here" source.
+ * Year-grouped data management contributions.
+ * Each row links to an in-site project page and/or an external source.
  */
 export function ContributionsList() {
   return (
     <div className="space-y-10">
-      <div className="flex flex-col gap-3 rounded-lg border border-border bg-surface p-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm leading-relaxed text-ink-muted">
-          This list mirrors Amanuel&apos;s public{" "}
-          <a
-            href={contributionsListUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-teal underline-offset-2 hover:underline"
-          >
-            Data Management Contributions in Research Projects
-          </a>{" "}
-          page. Use portfolio links for local detail pages, and source links for
-          the institutional / registry pages originally labeled “Here”.
-        </p>
-        <a
-          href={contributionsListUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex shrink-0 items-center gap-1.5 text-sm font-medium text-ink hover:text-teal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-        >
-          Open Google Site list
-          <ExternalLink className="size-3.5" aria-hidden />
-        </a>
-      </div>
-
       {contributionYears.map((year) => {
         const items = getContributionsByYear(year)
         return (
@@ -72,16 +46,8 @@ export function ContributionsList() {
                     </p>
                   </div>
 
-                  <div className="flex shrink-0 flex-wrap gap-3 text-sm">
-                    {item.projectSlug ? (
-                      <Link
-                        href={`/projects/${item.projectSlug}`}
-                        className="font-medium text-ink hover:text-teal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-                      >
-                        Portfolio
-                      </Link>
-                    ) : null}
-                    {item.sourceUrl ? (
+                  {item.sourceUrl ? (
+                    <div className="flex shrink-0 flex-wrap gap-3 text-sm">
                       <a
                         href={item.sourceUrl}
                         target="_blank"
@@ -91,12 +57,8 @@ export function ContributionsList() {
                         {item.sourceLabel ?? "Source"}
                         <ExternalLink className="size-3.5" aria-hidden />
                       </a>
-                    ) : (
-                      <span className="text-xs text-ink-muted">
-                        No public source link on Google Site
-                      </span>
-                    )}
-                  </div>
+                    </div>
+                  ) : null}
                 </li>
               ))}
             </ol>

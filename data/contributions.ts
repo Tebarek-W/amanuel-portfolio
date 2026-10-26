@@ -1,23 +1,17 @@
 /**
- * Mirror of the public Google Site list:
- * https://sites.google.com/view/amanuel-td/data-management-contributions-in-research-projects
- *
- * Each item keeps the original title and the "Here" destination URL where present.
- * `projectSlug` connects the list item to this portfolio’s project detail page when available.
+ * Year-grouped data management contributions.
+ * `projectSlug` connects a list item to this portfolio’s project detail page when available.
  */
 
 export type ContributionItem = {
   year: 2022 | 2023 | 2024
   title: string
-  /** External URL from the Google Site "Here" link, when present */
+  /** External institutional / registry source URL, when present */
   sourceUrl?: string
   sourceLabel?: string
   /** Matching portfolio project slug, when one exists */
   projectSlug?: string
 }
-
-export const contributionsListUrl =
-  "https://sites.google.com/view/amanuel-td/data-management-contributions-in-research-projects"
 
 export const contributions: ContributionItem[] = [
   // 2022

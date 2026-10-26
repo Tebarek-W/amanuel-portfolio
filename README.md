@@ -63,7 +63,6 @@ Typed content lives under `data/`:
 | `data/publications.ts` | Publications / research data |
 | `data/skills.ts` | Skills, expertise, workflow |
 | `data/education.ts` | Education |
-| `data/experience.ts` | Roles and experience letters |
 
 Blog posts are stored in Postgres (not in `data/`).
 

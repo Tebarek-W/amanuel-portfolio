@@ -66,7 +66,6 @@ export const siteConfig = {
   } satisfies Record<string, SocialLink>,
   nav: [
     { label: "About", href: "/about" },
-    { label: "Experience", href: "/experience" },
     { label: "Projects", href: "/projects" },
     { label: "Services", href: "/services" },
     { label: "Publications", href: "/publications" },
@@ -104,13 +103,9 @@ export const heroCopy = {
 
 export const aboutCopy = {
   summary:
-    "I am a data management professional with 7+ years of experience, currently serving as a Data Manager at the FDRE Policy Studies Institute (PSI) and Addis Economic Research PLC (AER). I have a proven track record in data collection, field data quality supervision, data collection tool programming, and data management. I hold a Bachelor of Arts in Geography and Environmental Studies from Addis Ababa University, and an MSc in Data Science from the same university.",
-  approach:
-    "I design and program effective CAPI and CATI data collection tools, supervise field data quality, and deliver clean analysis-ready datasets — combining technical expertise with practical research experience so decision-makers can work from evidence they can trust.",
-  focus:
-    "My career focus includes research data management, monitoring and evaluation support, statistical analysis, geospatial analysis, and applied machine learning for development and policy research in Ethiopia and comparable research settings.",
-  googleSiteParagraphs: [
-    "My expertise has been developed through diverse research projects with organizations such as PSI, CSA (formerly), the Oxford Martin Programme on the Future of Development at the University of Oxford, New York University Abu Dhabi, the World Bank, IFPRI, ILRI, CIMMYT, IFAD, JSI-L10K, New York University, Arba Minch University, and KU Leuven.",
-    "I am committed to adopting useful technologies and methods while ensuring data accuracy, efficiency, and reliability. My experience managing large datasets and programming CAPI/CATI instruments supports more efficient field data collection.",
-  ] as const,
+    "I am a seasoned Data Management Professional with over seven years of experience. Currently serving as a Data Manager at FDRE Policy Studies Institute (PSI) and Addis Economic Research PLC (AER), I have a proven track record in data collection, field data quality supervision, data collection tool programming, and data management. I hold a Bachelor of Arts in Geography and Environmental Studies from Addis Ababa University.",
+  organizations:
+    "My expertise has been developed through diverse research projects with renowned organizations such as PSI (Policy Studies Institute), CSA (Central Statistics Agency, Formerly), Oxford Martin Programme on the Future of Development at the University of Oxford, New York University Abu Dhabi, WB, IFPRI, ILRI, CIMMYT, IFAD, JSI-L10K, New York University, Arba Minch University, and KU Leuven. I am an expert at adopting cutting-edge technologies and methodologies and am unwaveringly committed to ensuring data accuracy, efficiency, and reliability. My extensive experience has given me a comprehensive understanding of data management principles and best practices.",
+  priorRoles:
+    "In my previous roles, I demonstrated my ability to manage large datasets, ensuring their integrity and accuracy. I have a proven track record of designing and programming effective data collection tools for Computer-Assisted Personal Interviewing (CAPI) and Computer-Assisted Telephone Interviewing (CATI), which have significantly improved the efficiency of data collection processes.",
 }

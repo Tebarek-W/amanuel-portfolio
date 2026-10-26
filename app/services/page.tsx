@@ -16,11 +16,7 @@ export default function ServicesPage() {
   return (
     <div className="section-y">
       <div className="container-page">
-        <SectionHeading
-          eyebrow="Services"
-          title="Support for research teams that need reliable data operations"
-          description="Each service reflects capabilities documented in the CV and website brief — survey programming, quality systems, analysis, reporting, and GIS."
-        />
+        <SectionHeading title="Services" />
 
         <div className="mt-12 space-y-8">
           {services.map((service, index) => (
@@ -35,35 +31,17 @@ export default function ServicesPage() {
               <h2 className="mt-2 font-heading text-2xl font-semibold tracking-tight text-ink">
                 {service.title}
               </h2>
-              <p className="mt-3 max-w-3xl text-base leading-relaxed text-ink-muted">
-                {service.summary}
-              </p>
 
-              <div className="mt-6 grid gap-6 md:grid-cols-2">
-                <div>
-                  <h3 className="text-sm font-semibold tracking-wide text-ink uppercase">
-                    Deliverables
-                  </h3>
-                  <ul className="mt-3 space-y-2">
-                    {service.deliverables.map((item) => (
-                      <li
-                        key={item}
-                        className="flex gap-2 text-sm text-ink-muted before:mt-2 before:size-1 before:shrink-0 before:rounded-full before:bg-teal before:content-['']"
-                      >
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-sm font-semibold tracking-wide text-ink uppercase">
-                    Value for research teams
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-                    {service.value}
-                  </p>
-                </div>
-              </div>
+              <ul className="mt-5 space-y-2">
+                {service.deliverables.map((item) => (
+                  <li
+                    key={item}
+                    className="flex gap-2 text-sm text-ink-muted before:mt-2 before:size-1 before:shrink-0 before:rounded-full before:bg-teal before:content-['']"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </article>
           ))}
         </div>

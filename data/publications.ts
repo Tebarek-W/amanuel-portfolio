@@ -1,6 +1,8 @@
+export type PublicationCategory = "journal" | "data"
+
 export type Publication = {
   id: string
-  type: "research-data"
+  type: PublicationCategory
   title: string
   authors: string[]
   venue: string
@@ -10,10 +12,17 @@ export type Publication = {
   url?: string
 }
 
+export const publicationCategoryLabels: Record<PublicationCategory, string> = {
+  journal: "Journals",
+  data: "Data",
+}
+
+export const publicationCategories: PublicationCategory[] = ["journal", "data"]
+
 export const publications: Publication[] = [
   {
     id: "pwd-national-survey-data",
-    type: "research-data",
+    type: "data",
     title: "National Survey on Persons with Disabilities in Ethiopia",
     authors: [
       "Kaleab K. Haile",
@@ -36,6 +45,12 @@ export const publications: Publication[] = [
     url: "https://doi.org/10.5072/FK2/ZSVJ4B",
   },
 ]
+
+export function getPublicationsByCategory(
+  category: PublicationCategory
+): Publication[] {
+  return publications.filter((publication) => publication.type === category)
+}
 
 export function formatAuthorList(
   authors: string[],

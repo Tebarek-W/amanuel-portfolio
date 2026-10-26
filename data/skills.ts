@@ -22,7 +22,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     id: "ml",
-    title: "Machine learning & deep learning",
+    title: "Machine Learning & Deep Learning",
     items: ["scikit-learn", "PyTorch", "TensorFlow"],
   },
   {
