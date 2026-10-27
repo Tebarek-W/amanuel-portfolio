@@ -25,13 +25,13 @@ export function OrganizationsSection() {
                 rel="noopener noreferrer"
                 className="group flex items-center gap-4 rounded-2xl border border-border/80 bg-paper px-5 py-5 transition-colors hover:border-teal/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring sm:gap-5 sm:px-6"
               >
-                <span className="relative flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-ink sm:size-20">
+                <span className="relative flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-border/60 bg-white sm:size-20">
                   <Image
                     src={org.logoSrc}
                     alt={org.logoAlt}
                     width={80}
                     height={80}
-                    className="size-full object-contain p-1.5"
+                    className="size-full object-contain p-2"
                   />
                 </span>
                 <span className="min-w-0">

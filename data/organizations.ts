@@ -21,7 +21,7 @@ export const organizations: Organization[] = [
     name: "Addis Economic Research PLC (AER)",
     shortName: "AER",
     href: "https://aer.et",
-    logoSrc: "/images/organizations/aer-logo.svg",
+    logoSrc: "/images/organizations/aer-logo.png",
     logoAlt: "Addis Economic Research logo",
   },
 ]

@@ -52,7 +52,7 @@ export const siteConfig = {
     },
     telegram: {
       label: "Telegram",
-      href: "https://t.me/amanuel_td",
+      href: "https://t.me/amanueltd",
     },
   } satisfies Record<string, SocialLink>,
   nav: [
@@ -93,7 +93,7 @@ export const heroCopy = {
 
 export const aboutCopy = {
   paragraphs: [
-    "Amanuel Tadele is a research professional with over seven years of experience in digital data collection, survey programming, field data quality assurance and data management.",
+    "I am a research professional with over seven years of experience in digital data collection, survey programming, field data quality assurance and data management.",
     "I hold an MSc in Data Science and a BA in Geography and Environmental Studies from Addis Ababa University. Throughout my career, I have contributed to multidisciplinary research projects in collaboration with national and international research institutions.",
     "My expertise includes designing and programming digital data collection instruments for Computer-Assisted Personal Interviewing (CAPI) and Computer-Assisted Telephone Interviewing (CATI), supervising field data quality, managing large datasets and implementing data validation and quality assurance procedures. I combine technical expertise with a strong commitment to data accuracy, integrity and operational efficiency.",
     "Building on my experience in research data systems, I apply data science and machine learning approaches to transform data into reliable, actionable insight that supports research, policy development and informed decision making.",

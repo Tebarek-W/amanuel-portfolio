@@ -7,6 +7,8 @@ export type Publication = {
   authors: string[]
   venue: string
   dateLabel: string
+  doi?: string
+  url?: string
 }
 
 export const publicationCategoryLabels: Record<PublicationCategory, string> = {
@@ -37,6 +39,8 @@ export const publications: Publication[] = [
     ],
     venue: "Policy Studies Institute (PSI)-Research Data Management",
     dateLabel: "Sep. 23, 2026",
+    doi: "10.5072/FK2/ZSVJ4B",
+    url: "https://doi.org/10.5072/FK2/ZSVJ4B",
   },
 ]
 
