@@ -7,10 +7,7 @@ const siteDescription =
 export function JsonLd() {
   const siteUrl = getSiteUrl()
   const email = getPreferredEmail().address
-  const sameAs = [
-    siteConfig.personalSite.href,
-    ...getPublicSocialLinks().map((link) => link.href),
-  ]
+  const sameAs = getPublicSocialLinks().map((link) => link.href)
 
   const graph = [
     {

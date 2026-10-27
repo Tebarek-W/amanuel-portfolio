@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { motion, useReducedMotion } from "motion/react"
-import { heroCopy, siteConfig } from "@/data/site"
+import { heroCopy } from "@/data/site"
 import { DataMotif } from "@/components/data-motif"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -14,29 +14,11 @@ export function HeroSection() {
     <section className="hero-glow relative overflow-hidden border-b border-border">
       <div className="container-page grid items-center gap-8 py-12 sm:gap-12 sm:py-16 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:py-24">
         <div className="min-w-0">
-          <motion.div
-            className="flex flex-wrap items-center gap-2"
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            <p className="text-xs font-medium tracking-[0.04em] text-teal sm:text-sm sm:tracking-[0.06em] sm:uppercase">
-              <span className="sm:hidden">{siteConfig.title}</span>
-              <span className="hidden sm:inline">{heroCopy.identity}</span>
-            </p>
-            <Badge
-              variant="secondary"
-              className="rounded-md px-2 py-0.5 font-mono text-[0.65rem] tracking-wide text-teal"
-            >
-              7+ years
-            </Badge>
-          </motion.div>
-
           <motion.h1
-            className="mt-4 max-w-[18ch] font-heading text-[1.95rem] font-semibold leading-[1.12] tracking-tight text-ink text-balance sm:mt-5 sm:max-w-xl sm:text-5xl lg:text-[3.35rem] lg:leading-[1.08]"
+            className="max-w-[18ch] font-heading text-[1.95rem] font-semibold leading-[1.12] tracking-tight text-ink text-balance sm:max-w-xl sm:text-5xl lg:text-[3.35rem] lg:leading-[1.08]"
             initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : 0.05 }}
+            transition={{ duration: 0.45 }}
           >
             {heroCopy.headline}
           </motion.h1>

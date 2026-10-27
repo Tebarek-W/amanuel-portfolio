@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { ExternalLink } from "lucide-react"
 import { SectionHeading } from "@/components/section-heading"
 import { Button } from "@/components/ui/button"
 import { education } from "@/data/education"
@@ -64,10 +63,7 @@ function ProfileCard({
               aria-hidden
             />
             <div className="absolute inset-x-0 bottom-0 p-3.5 sm:p-4">
-              <p className="font-mono text-[0.65rem] tracking-[0.14em] text-teal-muted uppercase">
-                Profile
-              </p>
-              <p className="mt-0.5 font-heading text-base font-semibold tracking-tight text-paper sm:text-lg">
+              <p className="font-heading text-base font-semibold tracking-tight text-paper sm:text-lg">
                 {siteConfig.name}
               </p>
               <p className="mt-0.5 text-xs text-paper/85 sm:text-sm">
@@ -78,44 +74,14 @@ function ProfileCard({
         </div>
       </div>
 
-      <div className="surface-panel relative z-10 mt-5 space-y-4 p-4 sm:mt-6 sm:p-5">
-        <div>
-          <p className="font-mono text-[0.65rem] tracking-[0.14em] text-teal uppercase">
-            Currently
-          </p>
-          <h2 className="mt-1 font-heading text-base font-semibold tracking-tight text-ink">
-            Roles & affiliations
-          </h2>
-        </div>
-        <ul className="space-y-3 text-sm text-ink-muted">
-          {siteConfig.employers.map((employer) => (
-            <li
-              key={employer.href}
-              className="border-t border-border/70 pt-3 first:border-t-0 first:pt-0"
-            >
-              <span className="font-medium text-ink">{employer.role}</span>
-              <br />
-              <a
-                href={employer.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-0.5 inline-flex items-center gap-1 text-teal hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-              >
-                {employer.name}
-                <ExternalLink className="size-3.5" aria-hidden />
-              </a>
-            </li>
-          ))}
-        </ul>
-        <div className="border-t border-border/70 pt-4">
-          <Button
-            className="w-full"
-            nativeButton={false}
-            render={<Link href="/contact" />}
-          >
-            Let&apos;s Connect
-          </Button>
-        </div>
+      <div className="relative z-10 mt-5 sm:mt-6">
+        <Button
+          className="w-full"
+          nativeButton={false}
+          render={<Link href="/contact" />}
+        >
+          Let&apos;s Connect
+        </Button>
       </div>
     </aside>
   )
@@ -140,9 +106,9 @@ export default function AboutPage() {
               />
 
               <div className="mt-8 space-y-5 text-[0.95rem] leading-relaxed text-ink-muted sm:mt-10 sm:space-y-6 sm:text-base">
-                <p>{aboutCopy.summary}</p>
-                <p>{aboutCopy.organizations}</p>
-                <p>{aboutCopy.priorRoles}</p>
+                {aboutCopy.paragraphs.map((paragraph) => (
+                  <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+                ))}
               </div>
 
               <div className="mt-8 sm:mt-10">
@@ -171,7 +137,7 @@ export default function AboutPage() {
           <SectionHeading
             id="education-heading"
             eyebrow="Education"
-            title="Academic credentials"
+            title="Education Background"
           />
           <ul className="mt-8 space-y-4">
             {education.map((item) => (

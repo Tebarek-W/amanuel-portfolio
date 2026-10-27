@@ -25,10 +25,6 @@ export const siteConfig = {
       address: "amangeo251@gmail.com",
     },
   } satisfies Record<string, ContactEmail>,
-  personalSite: {
-    label: "Public Google Site",
-    href: "https://sites.google.com/view/amanuel-td",
-  },
   employers: [
     {
       name: "FDRE Policy Studies Institute (PSI)",
@@ -82,10 +78,9 @@ export function getPublicSocialLinks(): SocialLink[] {
 }
 
 export const heroCopy = {
-  identity: "Amanuel Tadele | Research Specialist",
   headline: "Turning Data into Actionable Insights",
   supporting:
-    "I help organizations transform their data into actionable and reliable evidence to support better decision-making — including digital data collection, survey programming, data quality assurance, statistical analysis, and machine learning.",
+    "I am a research and data professional specializing in digital data collection, data quality assurance, statistical analysis and machine learning. I help organizations transform complex data into reliable evidence and actionable insights.",
   expertiseLabels: [
     "Digital Data Collection",
     "Data Analysis",
@@ -97,10 +92,10 @@ export const heroCopy = {
 }
 
 export const aboutCopy = {
-  summary:
-    "I am a seasoned Data Management Professional with over seven years of experience. Currently serving as a Data Manager at FDRE Policy Studies Institute (PSI) and Addis Economic Research PLC (AER), I have a proven track record in data collection, field data quality supervision, data collection tool programming, and data management. I hold a Bachelor of Arts in Geography and Environmental Studies from Addis Ababa University.",
-  organizations:
-    "My expertise has been developed through diverse research projects with renowned organizations such as PSI (Policy Studies Institute), CSA (Central Statistics Agency, Formerly), Oxford Martin Programme on the Future of Development at the University of Oxford, New York University Abu Dhabi, WB, IFPRI, ILRI, CIMMYT, IFAD, JSI-L10K, New York University, Arba Minch University, and KU Leuven. I am an expert at adopting cutting-edge technologies and methodologies and am unwaveringly committed to ensuring data accuracy, efficiency, and reliability. My extensive experience has given me a comprehensive understanding of data management principles and best practices.",
-  priorRoles:
-    "In my previous roles, I demonstrated my ability to manage large datasets, ensuring their integrity and accuracy. I have a proven track record of designing and programming effective data collection tools for Computer-Assisted Personal Interviewing (CAPI) and Computer-Assisted Telephone Interviewing (CATI), which have significantly improved the efficiency of data collection processes.",
+  paragraphs: [
+    "Amanuel Tadele is a research professional with over seven years of experience in digital data collection, survey programming, field data quality assurance and data management.",
+    "I hold an MSc in Data Science and a BA in Geography and Environmental Studies from Addis Ababa University. Throughout my career, I have contributed to multidisciplinary research projects in collaboration with national and international research institutions.",
+    "My expertise includes designing and programming digital data collection instruments for Computer-Assisted Personal Interviewing (CAPI) and Computer-Assisted Telephone Interviewing (CATI), supervising field data quality, managing large datasets and implementing data validation and quality assurance procedures. I combine technical expertise with a strong commitment to data accuracy, integrity and operational efficiency.",
+    "Building on my experience in research data systems, I apply data science and machine learning approaches to transform data into reliable, actionable insight that supports research, policy development and informed decision making.",
+  ] as const,
 }

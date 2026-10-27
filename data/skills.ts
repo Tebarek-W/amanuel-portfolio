@@ -7,7 +7,7 @@ export type SkillGroup = {
 export const skillGroups: SkillGroup[] = [
   {
     id: "visualization",
-    title: "Data visualization",
+    title: "Data Visualization",
     items: [
       "Power BI",
       "Looker Studio",
@@ -17,7 +17,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     id: "statistics",
-    title: "Statistical programming & analysis",
+    title: "Statistical Programming & Analysis",
     items: ["R", "Python", "Stata", "SPSS"],
   },
   {
@@ -27,17 +27,17 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     id: "geospatial",
-    title: "Geospatial analysis",
+    title: "Geospatial Analysis",
     items: ["ArcGIS Pro", "QGIS", "Python geospatial libraries"],
   },
   {
     id: "collection",
-    title: "Digital data collection",
+    title: "Digital Data Collection",
     items: ["SurveyCTO", "ODK (Open Data Kit)", "KoboToolbox", "CSPro"],
   },
   {
     id: "productivity",
-    title: "Productivity suites",
+    title: "Productivity Suites",
     items: ["MS Office Suite", "Google Workspace"],
   },
 ]

@@ -14,8 +14,6 @@ export type ProjectCategory =
 
 export type ProjectOrg = "PSI" | "AER" | "IFPRI" | "ILRI" | "IFAD" | "Other"
 
-export type ProjectSource = "cv" | "google-sites" | "both"
-
 export type Project = {
   slug: string
   title: string
@@ -30,10 +28,8 @@ export type Project = {
   tools?: string[]
   featured: boolean
   summary: string
-  /** Public research / project page linked from Google Sites contributions list */
   externalUrl?: string
   externalLabel?: string
-  source?: ProjectSource
 }
 
 export const projectCategories: Record<
@@ -131,8 +127,7 @@ export const projects: Project[] = [
       "Household survey research on multidimensional child poverty and deprivations in Ethiopia.",
     externalUrl:
       "http://www.psi.org.et/index.php/blog/237-the-state-of-multidimensional-child-poverty-and-deprivations-in-ethiopia-a-research-proposal",
-    externalLabel: "PSI research page",
-    source: "both",
+    externalLabel: "PSI research page",
   },
   {
     slug: "digital-credit-borrowers-welfare",
@@ -154,8 +149,7 @@ export const projects: Project[] = [
     summary:
       "Firm survey research examining digital credit and implications for borrowers' welfare.",
     externalUrl: "https://www.socialscienceregistry.org/trials/13130",
-    externalLabel: "AEA RCT Registry",
-    source: "both",
+    externalLabel: "AEA RCT Registry",
   },
   {
     slug: "child-grant-pilot-assessment",
@@ -250,8 +244,7 @@ export const projects: Project[] = [
       "Study investigating barriers to accessing and using housing finance in Ethiopia.",
     externalUrl:
       "http://www.psi.org.et/index.php/blog/250-launching-validation-workshop-on-investigating-barriers-to-access-and-usage-of-housing-finance-in-ethiopia-held",
-    externalLabel: "PSI workshop page",
-    source: "both",
+    externalLabel: "PSI workshop page",
   },
   {
     slug: "housing-provision-quality-of-life",
@@ -373,8 +366,7 @@ export const projects: Project[] = [
       "Firm survey research on lease financing effects for SMEs and inclusion in Ethiopia.",
     externalUrl:
       "https://idrc-crdi.ca/en/project/effects-lease-financing-small-and-medium-sized-enterprises-and-inclusion-ethiopia",
-    externalLabel: "IDRC project page",
-    source: "both",
+    externalLabel: "IDRC project page",
   },
   {
     slug: "improving-labor-migration-middle-east",
@@ -412,8 +404,7 @@ export const projects: Project[] = [
     featured: false,
     summary: "IFPRI household survey on risk-contingent credit.",
     externalUrl: "https://www.ifpri.org/project/risk-contingent-credit-resilience/",
-    externalLabel: "IFPRI project page",
-    source: "both",
+    externalLabel: "IFPRI project page",
   },
   {
     slug: "digital-payment-msmes",
@@ -434,8 +425,7 @@ export const projects: Project[] = [
       "Firm survey on digital payment adoption and access to finance among MSMEs.",
     externalUrl:
       "https://pedl.cepr.org/content/adoption-digital-payment-technologies-and-access-finance-among-msmes-ethiopia-exploratory-0",
-    externalLabel: "PEDL project page",
-    source: "both",
+    externalLabel: "PEDL project page",
   },
   {
     slug: "rehabilitation-conflict-affected",
@@ -456,8 +446,7 @@ export const projects: Project[] = [
       "Experimental research on rehabilitating livelihoods in conflict-affected communities.",
     externalUrl:
       "https://essp.ifpri.info/2023/10/05/survey-watch-actionable-research-to-inform-rehabilitation-and-rebuilding-of-livelihoods-in-conflict-affected-communities-in-ethiopia/",
-    externalLabel: "IFPRI ESSP survey watch",
-    source: "both",
+    externalLabel: "IFPRI ESSP survey watch",
   },
   {
     slug: "migration-displacement-labor",
@@ -509,8 +498,7 @@ export const projects: Project[] = [
       "Experimental research on gender norms and female-owned enterprises in Ethiopia.",
     externalUrl:
       "https://pedl.cepr.org/content/impact-social-norms-and-household-dynamics-female-owned-enterprises-0",
-    externalLabel: "PEDL project page",
-    source: "both",
+    externalLabel: "PEDL project page",
   },
   {
     slug: "rpsf-impact-analysis",
@@ -530,8 +518,7 @@ export const projects: Project[] = [
     summary:
       "IFAD impact analysis and reporting for Ethiopia’s Rural Poor Stimulus Facility (RPSF-1).",
     externalUrl: "https://webapps.ifad.org/members/eb/136/docs/EB-2022-136-R-21.pdf",
-    externalLabel: "IFAD Executive Board document (PDF)",
-    source: "both",
+    externalLabel: "IFAD Executive Board document (PDF)",
   },
   {
     slug: "urban-land-lease-markets",
@@ -551,8 +538,7 @@ export const projects: Project[] = [
       "Research on characteristics of urban land lease markets in Ethiopia.",
     externalUrl:
       "https://psi.org.et/index.php/blog/283-characteristics-of-urban-land-lease-markets-in-ethiopia-2",
-    externalLabel: "PSI research page",
-    source: "google-sites",
+    externalLabel: "PSI research page",
   },
   {
     slug: "addis-ababa-city-ecosystem",
@@ -571,8 +557,7 @@ export const projects: Project[] = [
     summary: "Evaluation study of the Addis Ababa city ecosystem.",
     externalUrl:
       "http://www.psi.org.et/index.php/blog/242-launching-workshop-on-addis-ababa-city-ecosystem-evaluation-study-held",
-    externalLabel: "PSI workshop page",
-    source: "google-sites",
+    externalLabel: "PSI workshop page",
   },
   {
     slug: "migration-intentions-benefits",
@@ -592,8 +577,7 @@ export const projects: Project[] = [
     summary:
       "Registered trial research on how expected personal and household benefits relate to migration intentions.",
     externalUrl: "https://www.socialscienceregistry.org/trials/11285",
-    externalLabel: "AEA RCT Registry",
-    source: "google-sites",
+    externalLabel: "AEA RCT Registry",
   },
   {
     slug: "sustainable-diet-policy",
@@ -614,8 +598,7 @@ export const projects: Project[] = [
       "Systems-approach research toward healthier and more sustainable diet policy in Ethiopia.",
     externalUrl:
       "https://idrc-crdi.ca/en/project/leveraging-systems-approach-healthier-and-sustainable-diet-policy-ethiopia",
-    externalLabel: "IDRC project page",
-    source: "google-sites",
+    externalLabel: "IDRC project page",
   },
   {
     slug: "it-governance-public-sectors",
@@ -635,8 +618,7 @@ export const projects: Project[] = [
       "Policy-oriented research on IT governance needs in Ethiopia’s public sectors.",
     externalUrl:
       "https://psi.org.et/index.php/blog/268-it-governance-in-ethiopia-public-sectors-the-need-for-policy-intervention",
-    externalLabel: "PSI research page",
-    source: "google-sites",
+    externalLabel: "PSI research page",
   },
   {
     slug: "cbhi-health-service-utilization",
@@ -657,8 +639,7 @@ export const projects: Project[] = [
       "Experimental evidence on how community-based health insurance affects health service utilization in Ethiopia.",
     externalUrl:
       "https://nieraglobal.org/niera_projects/details/demand-driven-research-initiative-ddri",
-    externalLabel: "NIERA project page",
-    source: "google-sites",
+    externalLabel: "NIERA project page",
   },
 ]
 
@@ -673,28 +654,3 @@ export function getProjectBySlug(slug: string): Project | undefined {
 export function getAllProjectSlugs(): string[] {
   return projects.map((project) => project.slug)
 }
-
-export const roleSummaries = {
-  psi: {
-    title: "Data Manager",
-    organization: "FDRE Policy Studies Institute (PSI) / formerly EDRI",
-    highlights: [
-      "Boosted survey efficiency through CAPI/CATI tools (SurveyCTO, Kobo).",
-      "Improved data quality by implementing high-frequency checks (HFC).",
-      "Strengthened field team capacity with training and technical support.",
-      "Delivered interactive dashboards for real-time monitoring and clean datasets.",
-      "Produced preliminary analysis reports that informed project decisions.",
-    ],
-  },
-  aer: {
-    title: "Database Manager",
-    organization: "Addis Economic Research PLC (AER)",
-    highlights: [
-      "Designed survey forms for CATI/CAPI.",
-      "Implemented automated high-frequency checks (HFC).",
-      "Assisted enumerator and supervisor training.",
-      "Monitored data quality and coordinated with field staff.",
-      "Designed dashboards for real-time data monitoring and conducted data cleaning.",
-    ],
-  },
-} as const

@@ -3,15 +3,13 @@ import { ContactSection } from "@/components/contact-section"
 import { ExpertiseCard } from "@/components/expertise-card"
 import { HeroSection } from "@/components/hero-section"
 import { LatestBlogSection } from "@/components/latest-blog-section"
+import { OrganizationsSection } from "@/components/organizations-section"
 import { ProjectCard } from "@/components/project-card"
-import { PublicationItem } from "@/components/publication-item"
 import { SectionHeading } from "@/components/section-heading"
 import { ServiceCard } from "@/components/service-card"
 import { WorkflowDiagram } from "@/components/workflow-diagram"
 import { Button } from "@/components/ui/button"
-import { education } from "@/data/education"
 import { getFeaturedProjects } from "@/data/projects"
-import { publications } from "@/data/publications"
 import { services } from "@/data/services"
 import { expertiseAreas } from "@/data/skills"
 
@@ -36,7 +34,6 @@ export default function HomePage() {
             id="expertise-heading"
             eyebrow="Expertise"
             title="Capabilities across the research data lifecycle"
-            description="From survey programming and field monitoring to cleaning, analysis, visualization, and geospatial work."
           />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {expertiseAreas.map((area, index) => (
@@ -45,6 +42,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <OrganizationsSection />
 
       <section
         id="projects"
@@ -87,7 +86,7 @@ export default function HomePage() {
             id="services-heading"
             eyebrow="Services"
             title="Practical support for research and M&E teams"
-            description="End-to-end research data management services across digital survey programming, high-frequency quality checks, statistical analysis, reporting, and GIS."
+            description="End-to-end research data management services across digital survey programming, high-frequency quality checks, statistical analysis, and reporting."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {services.map((service, index) => (
@@ -111,75 +110,6 @@ export default function HomePage() {
           />
           <div className="mt-10">
             <WorkflowDiagram />
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="education"
-        className="section-y"
-        aria-labelledby="education-heading"
-      >
-        <div className="container-page max-w-3xl">
-          <SectionHeading
-            id="education-heading"
-            eyebrow="Education"
-            title="Academic foundation"
-          />
-          <ul className="mt-8 space-y-4">
-            {education.map((item) => (
-              <li key={item.id} className="surface-panel p-5">
-                <h3 className="font-heading text-lg font-semibold text-ink">
-                  {item.degree}
-                </h3>
-                <p className="mt-1 text-sm text-ink-muted">
-                  {item.institution} · {item.dateLabel}
-                </p>
-              </li>
-            ))}
-          </ul>
-          <Button
-            variant="outline"
-            className="mt-6"
-            nativeButton={false}
-            render={<Link href="/about#education-heading" />}
-          >
-            About &amp; academic credentials
-          </Button>
-        </div>
-      </section>
-
-      <section
-        id="publications"
-        className="section-y border-y border-border bg-surface"
-        aria-labelledby="publications-heading"
-      >
-        <div className="container-page">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <SectionHeading
-              id="publications-heading"
-              eyebrow="Publications"
-              title="Research data outputs"
-              description="Published research datasets and collaborative survey outputs."
-            />
-            <Button
-              variant="outline"
-              size="lg"
-              nativeButton={false}
-              render={<Link href="/publications" />}
-              className="shrink-0 self-start sm:self-auto"
-            >
-              View publications
-            </Button>
-          </div>
-          <div className="mt-10 space-y-4">
-            {publications.map((publication) => (
-              <PublicationItem
-                key={publication.id}
-                publication={publication}
-                variant="card"
-              />
-            ))}
           </div>
         </div>
       </section>

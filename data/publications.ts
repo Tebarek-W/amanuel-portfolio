@@ -7,9 +7,6 @@ export type Publication = {
   authors: string[]
   venue: string
   dateLabel: string
-  doi?: string
-  note?: string
-  url?: string
 }
 
 export const publicationCategoryLabels: Record<PublicationCategory, string> = {
@@ -38,11 +35,8 @@ export const publications: Publication[] = [
       "Martha Kibur",
       "Abigale Degafie",
     ],
-    venue: "Policy Studies Institute (PSI) — Research Data Management",
-    dateLabel: "Sep 23, 2026",
-    doi: "10.5072/FK2/ZSVJ4B",
-    note: "National household survey dataset and research data documentation (9,200 household interviews).",
-    url: "https://doi.org/10.5072/FK2/ZSVJ4B",
+    venue: "Policy Studies Institute (PSI)-Research Data Management",
+    dateLabel: "Sep. 23, 2026",
   },
 ]
 
@@ -52,11 +46,10 @@ export function getPublicationsByCategory(
   return publications.filter((publication) => publication.type === category)
 }
 
-export function formatAuthorList(
-  authors: string[],
-  highlightName = "Amanuel Tadele"
-): string {
-  return authors
-    .map((author) => (author === highlightName ? author : author))
-    .join(", ")
+/** Citation-style author list: "A, B, and C" */
+export function formatAuthorList(authors: string[]): string {
+  if (authors.length === 0) return ""
+  if (authors.length === 1) return authors[0]
+  if (authors.length === 2) return `${authors[0]} and ${authors[1]}`
+  return `${authors.slice(0, -1).join(", ")}, and ${authors[authors.length - 1]}`
 }

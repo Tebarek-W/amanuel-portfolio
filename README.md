@@ -59,10 +59,13 @@ Typed content lives under `data/`:
 |------|---------|
 | `data/site.ts` | Name, contact, social links, nav |
 | `data/projects.ts` | Project cards + detail pages |
+| `data/contributions.ts` | Projects page contributions list |
+| `data/organizations.ts` | Home page organizations |
 | `data/services.ts` | Professional services |
 | `data/publications.ts` | Publications / research data |
 | `data/skills.ts` | Skills, expertise, workflow |
 | `data/education.ts` | Education |
+| `data/media.ts` | Portrait and media paths |
 
 Blog posts are stored in Postgres (not in `data/`).
 

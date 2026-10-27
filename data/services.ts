@@ -3,14 +3,8 @@ export type Service = {
   title: string
   summary: string
   deliverables: string[]
-  value: string
 }
 
-/**
- * Service offerings from the website draft Google Doc / brief.
- * Geospatial is retained from CV technical skills (not listed as a numbered
- * service in the draft, but documented under skills).
- */
 export const services: Service[] = [
   {
     slug: "digital-data-collection",
@@ -22,8 +16,6 @@ export const services: Service[] = [
       "Multilingual questionnaires and complex survey workflows",
       "Form testing, deployment and troubleshooting",
     ],
-    value:
-      "Helps research teams launch reliable digital surveys faster and reduce instrument-related field errors.",
   },
   {
     slug: "data-quality-assurance",
@@ -35,8 +27,6 @@ export const services: Service[] = [
       "Automated validation and error detection",
       "Data cleaning, consistency checks and analysis-ready dataset preparation",
     ],
-    value:
-      "Improves dataset integrity and shortens the path from fieldwork to usable research data.",
   },
   {
     slug: "research-me-support",
@@ -48,8 +38,6 @@ export const services: Service[] = [
       "Survey design and data management",
       "Monitoring dashboards and progress tracking",
     ],
-    value:
-      "Gives M&E and research teams clearer visibility into fieldwork progress and data readiness.",
   },
   {
     slug: "machine-learning",
@@ -61,8 +49,6 @@ export const services: Service[] = [
       "Model comparison and hyperparameter optimization",
       "Explainable AI",
     ],
-    value:
-      "Turns cleaned research datasets into modeled insights that can inform policy and program decisions.",
   },
   {
     slug: "reporting-visualization",
@@ -73,24 +59,16 @@ export const services: Service[] = [
       "Dashboard development and performance monitoring",
       "Analytical reports",
     ],
-    value:
-      "Helps stakeholders track progress and communicate results without drowning in raw tables.",
   },
   {
     slug: "geospatial-analysis",
     title: "Geospatial Data Analysis",
     summary:
-      "Support research with GIS workflows and geospatial visualization grounded in geography and environmental analysis experience (documented in CV technical skills).",
+      "Support research with GIS workflows and geospatial visualization grounded in geography and environmental analysis experience.",
     deliverables: [
       "Geospatial analysis with ArcGIS Pro and QGIS",
       "Python-based geospatial processing where needed",
       "Spatial visualization to support accessibility and location-based research questions",
     ],
-    value:
-      "Adds a spatial lens to research questions that depend on place, access, and geographic context.",
   },
 ]
-
-export function getServiceBySlug(slug: string): Service | undefined {
-  return services.find((service) => service.slug === slug)
-}

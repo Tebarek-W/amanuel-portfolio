@@ -39,7 +39,7 @@ export default function PublicationsPage() {
                 </h2>
 
                 {items.length > 0 ? (
-                  <ol className="mt-2 list-none border-t border-border">
+                  <ol className="mt-5 list-decimal space-y-5 pl-6 marker:font-medium marker:text-ink">
                     {items.map((publication) => (
                       <PublicationItem
                         key={publication.id}
@@ -49,7 +49,7 @@ export default function PublicationsPage() {
                     ))}
                   </ol>
                 ) : (
-                  <p className="mt-4 border-t border-border pt-5 text-sm text-ink-muted">
+                  <p className="mt-4 text-sm text-ink-muted">
                     No {label.toLowerCase()} listed yet.
                   </p>
                 )}
