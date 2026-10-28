@@ -41,6 +41,7 @@ Copy `.env.example` to `.env.local`:
 | `ADMIN_PASSWORD` | Password for `/admin/login` |
 | `SESSION_SECRET` | Session cookie signing secret (16+ chars) |
 | `FORMSPREE_FORM_ID` | Formspree form id or full endpoint URL |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics 4 ID (e.g. `G-XXXXXXXX`) |
 
 ## Blog & admin
 

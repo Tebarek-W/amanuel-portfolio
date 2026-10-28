@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { GeistMono } from "geist/font/mono"
 import { GeistSans } from "geist/font/sans"
+import { GoogleAnalytics } from "@/components/google-analytics"
 import { JsonLd } from "@/components/json-ld"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
@@ -73,6 +74,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         className="flex min-h-full flex-col font-sans"
         suppressHydrationWarning
       >
+        <GoogleAnalytics />
         <JsonLd />
         <a
           href="#main-content"
